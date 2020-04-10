@@ -103,6 +103,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\logo_v1.ico" />
     <Content Include="libvlc\sdk\lib\libvlc.lib">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1273,7 +1274,7 @@
   <Target Name="AfterBuild" Condition=" '$(Configuration)' == 'Release'">
     <Message Text="Starting AfterBuild..." />
     <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
-      <Output TaskParameter="Assemblies" ItemName="myAssemblyInfo"/>
+      <Output TaskParameter="Assemblies" ItemName="myAssemblyInfo" />
     </GetAssemblyIdentity>
     <Message Text="Starting nuget pack..." />
     <Exec Command="nuget pack $(MSBuildProjectDirectory)\..\nuget\Ruminoid.Trimmer.nuspec -Version %(myAssemblyInfo.Version) -Properties Configuration=Release -OutputDirectory $(MSBuildProjectDirectory)\..\nuget\ -BasePath $(MSBuildProjectDirectory)\..\nuget\" />
