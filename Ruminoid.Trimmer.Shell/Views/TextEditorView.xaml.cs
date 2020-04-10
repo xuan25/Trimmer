@@ -24,5 +24,11 @@ namespace Ruminoid.Trimmer.Shell.Views
         {
             InitializeComponent();
         }
+
+        #region Current
+
+        public static TextEditorView Current { get; } = new TextEditorView();
+
+        #endregion
     }
 }
