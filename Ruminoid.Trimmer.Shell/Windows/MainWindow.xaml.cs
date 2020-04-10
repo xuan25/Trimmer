@@ -47,12 +47,10 @@ namespace Ruminoid.Trimmer.Shell.Windows
 
             #region Document Register
 
+            DockManager.RegisterDocument(TextEditorView.Current);
+
             #endregion
         }
-
-        #region Views
-
-        #endregion
 
         private static readonly string SettingFileName = Path.Combine(ConfigHelper.UserDataFolder, "layout.xml");
 
