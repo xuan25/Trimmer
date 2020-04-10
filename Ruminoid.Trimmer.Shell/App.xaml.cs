@@ -55,7 +55,8 @@ namespace Ruminoid.Trimmer.Shell
 
             Shell.Properties.Resources.Culture = CultureInfo.CurrentUICulture;
 
-            StartWindow.Current.Show();
+            if (MainWindow is null) MainWindow = new MainWindow();
+            MainWindow.Show();
 
             Current.Dispatcher?.Invoke(() => ThemeService.Current.ChangeTheme(Theme.Dark));
             Current.Dispatcher?.Invoke(() => ThemeService.Current.ChangeAccent(Accent.Blue));
