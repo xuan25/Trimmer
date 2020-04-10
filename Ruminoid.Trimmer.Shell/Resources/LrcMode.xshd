@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<SyntaxDefinition name="Lrc" extensions=".lrc" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+	<Color name="IdTag" foreground="Green" exampleText="[ti:Title]" />
+	<Color name="TimeTag" foreground="Blue" exampleText="[00:00.00]" />
+	<RuleSet>
+    <Rule color="IdTag">
+      <Begin>\[[a-z]+:</Begin>
+      <End>\]</End>
+    </Rule>
+    <Rule color="TimeTag">
+      \[(\d{1,2}):(\d{1,2}).(\d{1,2})\]
+    </Rule>
+	</RuleSet>
+</SyntaxDefinition>
