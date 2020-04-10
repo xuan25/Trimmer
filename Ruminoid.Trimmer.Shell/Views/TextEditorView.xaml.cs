@@ -28,7 +28,7 @@ namespace Ruminoid.Trimmer.Shell.Views
         public TextEditorView()
         {
 
-            using (var stream = new MemoryStream(Shell.Properties.Resources.LrcMode))
+            using (var stream = new MemoryStream(Properties.Resources.LrcMode))
             {
                 using (var reader = new XmlTextReader(stream))
                 {
