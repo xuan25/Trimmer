@@ -1,3 +1,6 @@
 [submodule "MetroRadiance"]
 	path = MetroRadiance
 	url = git@github.com:HeavyWork/MetroRadiance.git
+[submodule "YDock"]
+	path = YDock
+	url = git@github.com:HeavyWork/YDock.git
