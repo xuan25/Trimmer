@@ -36,7 +36,7 @@
 
         <Border Grid.Row="0" controls:MetroWindow.IsCaptionBar="True" Height="0"/>
 
-        <Border Grid.Row="0" x:Name="WndCaption">
+        <Border Grid.Row="0" x:Name="WndCaption" Height="32" VerticalAlignment="Top">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -73,14 +73,74 @@
                         <MenuItem Header="关于(_A)" Foreground="#FF212121"/>
                     </MenuItem>
                 </Menu>
-                <Grid Grid.Column="2" HorizontalAlignment="Left" Margin="12,2"
+                <!--<Grid Grid.Column="2" HorizontalAlignment="Left" Margin="12,2"
                       Background="{DynamicResource BackgroundBrushKey}" VerticalAlignment="Center">
                     <TextBlock Text="Trimmer" Margin="8,4" FontWeight="Medium"/>
-                </Grid>
+                </Grid>-->
                 <controls:SystemButtons Grid.Column="3" x:Name="Wnd3"
                                         VerticalAlignment="Top" />
             </Grid>
         </Border>
+
+        <Grid  Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Margin="0,32,0,0">
+                <ToolBarTray VerticalAlignment="Center" Background="{x:Null}">
+                    <ToolBar Background="{x:Null}" OverflowMode="Never" Loaded="ToolBar_RemoveGrid">
+                        <Button Margin="3">
+                            <visualIcon:Icon Type="NewFile" Margin="3"/>
+                        </Button>
+                        <Button Margin="3">
+                            <visualIcon:Icon Type="OpenFile" Margin="3"/>
+                        </Button>
+                        <Button Margin="3">
+                            <visualIcon:Icon Type="Save" Margin="3"/>
+                        </Button>
+                        <Button Margin="3">
+                            <visualIcon:Icon Type="ExportScript" Margin="3"/>
+                        </Button>
+                    </ToolBar>
+                </ToolBarTray>
+            </Grid>
+
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal">
+                <Border BorderBrush="{DynamicResource BorderBrushKey}" BorderThickness="1,1,0,1">
+                    <Grid Background="{DynamicResource BackgroundBrushKey}">
+                        <StackPanel Margin="6,0" VerticalAlignment="Center" Orientation="Horizontal">
+                            <StackPanel Margin="6,0" VerticalAlignment="Center">
+                                <TextBlock Foreground="{DynamicResource BorderBrushKey}" Text="M" HorizontalAlignment="Center"/>
+                                <TextBlock Text="00" FontSize="36" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                            <TextBlock Text=":" FontSize="36" VerticalAlignment="Center" Margin="0,12,0,0"/>
+                            <StackPanel Margin="6,0" VerticalAlignment="Center">
+                                <TextBlock Foreground="{DynamicResource BorderBrushKey}" Text="S" HorizontalAlignment="Center"/>
+                                <TextBlock Text="00" FontSize="36" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                            <TextBlock Text="." FontSize="36" VerticalAlignment="Center" Margin="0,12,0,0"/>
+                            <StackPanel Margin="6,0" VerticalAlignment="Center">
+                                <TextBlock Foreground="{DynamicResource BorderBrushKey}" Text="Code" HorizontalAlignment="Center"/>
+                                <TextBlock Text="00" FontSize="36" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <Button HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                    Height="80" Width="80" Padding="0">
+                    <Grid Height="80" Width="80">
+                        <visualIcon:Icon Type="Timeline" Width="35" Height="35" Size="2"
+                                     HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,0"/>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                               Margin="-2,0,0,6" Text="K轴"/>
+                    </Grid>
+                </Button>
+            </StackPanel>
+
+        </Grid>
 
         <Grid Grid.Row="1" Margin="0">
             <yDock:DockManager x:Name="DockManager" Margin="0"/>

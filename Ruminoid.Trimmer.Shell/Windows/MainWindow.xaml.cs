@@ -127,5 +127,24 @@ namespace Ruminoid.Trimmer.Shell.Windows
         private const int WM_NCHITTEST = 0x0084;
 
         #endregion
+
+        #region Utilities
+
+        private void ToolBar_RemoveGrid(object sender, RoutedEventArgs e)
+        {
+
+            ToolBar toolBar = sender as ToolBar;
+            if (toolBar?.Template.FindName("OverflowGrid", toolBar) is FrameworkElement overflowGrid)
+            {
+                overflowGrid.Visibility = Visibility.Collapsed;
+            }
+            if (toolBar?.Template.FindName("MainPanelBorder", toolBar) is FrameworkElement mainPanelBorder)
+            {
+                mainPanelBorder.Margin = new Thickness(0);
+            }
+
+        }
+
+        #endregion
     }
 }
