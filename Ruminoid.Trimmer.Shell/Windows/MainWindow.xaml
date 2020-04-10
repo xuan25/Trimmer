@@ -129,15 +129,24 @@
                         </StackPanel>
                     </Grid>
                 </Border>
-                <Button HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                    Height="80" Width="80" Padding="0">
+                <ToggleButton HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Height="80" Width="80" Padding="0">
+                    <Grid Height="80" Width="80">
+                        <visualIcon:Icon Type="Run" Width="35" Height="35" Size="2"
+                                         HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,0"/>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                   Margin="-2,0,0,6" Text="播放/暂停"/>
+                    </Grid>
+                </ToggleButton>
+                <ToggleButton HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Height="80" Width="80" Padding="0">
                     <Grid Height="80" Width="80">
                         <visualIcon:Icon Type="Timeline" Width="35" Height="35" Size="2"
-                                     HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,0"/>
+                                         HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,0"/>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                               Margin="-2,0,0,6" Text="K轴"/>
+                                   Margin="-2,0,0,6" Text="K轴"/>
                     </Grid>
-                </Button>
+                </ToggleButton>
             </StackPanel>
 
         </Grid>
