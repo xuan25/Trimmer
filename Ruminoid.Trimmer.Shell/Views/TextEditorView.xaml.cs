@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml;
+using ICSharpCode.AvalonEdit.Highlighting;
+using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 using YDock.Interface;
 
 namespace Ruminoid.Trimmer.Shell.Views
@@ -23,7 +27,19 @@ namespace Ruminoid.Trimmer.Shell.Views
     {
         public TextEditorView()
         {
+
+            using (var stream = new MemoryStream(Shell.Properties.Resources.LrcMode))
+            {
+                using (var reader = new XmlTextReader(stream))
+                {
+                    HighlightingManager.Instance.RegisterHighlighting("Lrc", new string[0],
+                        HighlightingLoader.Load(reader,
+                            HighlightingManager.Instance));
+                }
+            }
+
             InitializeComponent();
+
         }
 
         #region Current

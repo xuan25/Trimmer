@@ -22,16 +22,6 @@ namespace Ruminoid.Trimmer.Shell
     {
         public App()
         {
-            using (var stream = new MemoryStream(Shell.Properties.Resources.LrcMode))
-            {
-                using (var reader = new XmlTextReader(stream))
-                {
-                    HighlightingManager.Instance.RegisterHighlighting("Lrc", new string[0],
-                        HighlightingLoader.Load(reader,
-                            HighlightingManager.Instance));
-                }
-            }
-
             DispatcherUnhandledException += (sender, args) =>
             {
                 args.Handled = true;
