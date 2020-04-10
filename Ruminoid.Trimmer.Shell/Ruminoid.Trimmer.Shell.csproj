@@ -99,6 +99,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands\HelpCommands.cs" />
+    <Compile Include="Commands\MainCommands.cs" />
     <Compile Include="Helpers\ConfigHelper.cs" />
     <Compile Include="Views\TextEditorView.xaml.cs">
       <DependentUpon>TextEditorView.xaml</DependentUpon>
