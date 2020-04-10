@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>RuminoidTrimmer</id>
+    <version>0.1.1.0</version>
+    <title>Ruminoid Trimmer</title>
+    <authors>Il Harper</authors>
+    <owners></owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/Ruminoid/Trimmer/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://ruminoid.vbox.moe/</projectUrl>
+    <iconUrl>https://ruminoid.vbox.moe/res/trimmer/logo/logo_v1.ico</iconUrl>
+    <description>Karaoke subtitle editor.</description>
+    <summary>Karaoke subtitle editor.</summary>
+    <copyright>2020 Il Harper</copyright>
+    <language>zh-CN</language>
+    <tags>Ruminoid</tags>
+  </metadata>
+  <files>
+    <file src="..\Ruminoid.Trimmer.Shell\bin\Release\**" target="lib\net48\" />
+  </files>
+</package>
