@@ -71,62 +71,62 @@ namespace Ruminoid.Trimmer.Shell.Helpers
 
         #region EditorConfig
 
-        private bool editorShowEndOfLine;
+        private bool _editorShowEndOfLine;
 
         public bool EditorShowEndOfLine
         {
-            get => editorShowEndOfLine;
+            get => _editorShowEndOfLine;
             set
             {
-                editorShowEndOfLine = value;
+                _editorShowEndOfLine = value;
                 OnPropertyChanged();
             }
         }
 
-        private bool editorWordWrap;
+        private bool _editorWordWrap;
 
         public bool EditorWordWrap
         {
-            get => editorWordWrap;
+            get => _editorWordWrap;
             set
             {
-                editorWordWrap = value;
+                _editorWordWrap = value;
                 OnPropertyChanged();
             }
         }
 
-        private bool editorShowSpaces;
+        private bool _editorShowSpaces;
 
         public bool EditorShowSpaces
         {
-            get => editorShowSpaces;
+            get => _editorShowSpaces;
             set
             {
-                editorShowSpaces = value;
+                _editorShowSpaces = value;
                 OnPropertyChanged();
             }
         }
 
-        private bool editorShowLineNumbers;
+        private bool _editorShowLineNumbers;
 
         public bool EditorShowLineNumbers
         {
-            get => editorShowLineNumbers;
+            get => _editorShowLineNumbers;
             set
             {
-                editorShowLineNumbers = value;
+                _editorShowLineNumbers = value;
                 OnPropertyChanged();
             }
         }
 
-        private double editorFontSize = 12;
+        private double _editorFontSize = 12;
 
         public double EditorFontSize
         {
-            get => editorFontSize;
+            get => _editorFontSize;
             set
             {
-                editorFontSize = value;
+                _editorFontSize = value;
                 OnPropertyChanged();
             }
         }
@@ -135,14 +135,14 @@ namespace Ruminoid.Trimmer.Shell.Helpers
 
         #region ExportConfig
 
-        private bool exportAverageWords;
+        private bool _exportAverageWords;
 
         public bool ExportAverageWords
         {
-            get => exportAverageWords;
+            get => _exportAverageWords;
             set
             {
-                exportAverageWords = value;
+                _exportAverageWords = value;
                 OnPropertyChanged();
             }
         }
