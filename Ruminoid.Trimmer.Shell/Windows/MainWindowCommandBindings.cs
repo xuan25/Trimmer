@@ -7,11 +7,14 @@ using System.Windows;
 using System.Windows.Input;
 using Ruminoid.Trimmer.Shell.Commands;
 using Ruminoid.Trimmer.Shell.Models;
+using Squirrel;
 
 namespace Ruminoid.Trimmer.Shell.Windows
 {
     public partial class MainWindow
     {
+
+        private bool _updating;
 
         private void AddCommandBindings()
         {
@@ -34,11 +37,40 @@ namespace Ruminoid.Trimmer.Shell.Windows
 
             #endregion
 
+            #region Playback
+
+            CommandBindings.Add(new CommandBinding(
+                UICommands.LoadMedia,
+                Commands_LoadMedia,
+                CanExecute));
+
+            CommandBindings.Add(new CommandBinding(
+                UICommands.Playback,
+                Command_Playback,
+                CanExecute));
+
+            #endregion
+
+            #region Help
+
+            CommandBindings.Add(new CommandBinding(
+                UICommands.DoAppUpdate,
+                Command_DoAppUpdate,
+                (sender, args) =>
+                {
+                    args.CanExecute = !_updating;
+                    args.Handled = true;
+                }));
+
+            #endregion
+
         }
+        
+        #region File
 
         private void Command_Save(object sender, ExecutedRoutedEventArgs e)
         {
-            
+            throw new NotImplementedException();
         }
 
         private void Command_ExitApp(object sender, ExecutedRoutedEventArgs e)
@@ -63,6 +95,40 @@ namespace Ruminoid.Trimmer.Shell.Windows
                 }
             }
         }
+
+        #endregion
+
+        #region Playback
+
+        private void Commands_LoadMedia(object sender, ExecutedRoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Command_Playback(object sender, ExecutedRoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region Help
+
+        private void Command_DoAppUpdate(object sender, ExecutedRoutedEventArgs e)
+        {
+            _updating = true;
+            Task.Factory.StartNew(async () =>
+            {
+                using (var mgr = new UpdateManager("https://ruminoid.vbox.moe/res/trimmer/releases"))
+                {
+                    await mgr.UpdateApp();
+                    Application.Current.Dispatcher?.Invoke(() =>
+                        _updating = false);
+                }
+            });
+        }
+
+        #endregion
 
         private void CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {

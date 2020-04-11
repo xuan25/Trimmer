@@ -102,8 +102,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands\EditCommands.cs" />
     <Compile Include="Commands\HelpCommands.cs" />
     <Compile Include="Commands\MainCommands.cs" />
+    <Compile Include="Commands\PlaybackCommands.cs" />
     <Compile Include="Helpers\ConfigHelper.cs" />
     <Compile Include="Models\LrcModel.cs" />
     <Compile Include="Views\LyricEditorView.xaml.cs">

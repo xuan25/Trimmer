@@ -67,9 +67,16 @@
                         <Separator/>
                         <MenuItem Command="Find" Foreground="#FF212121"/>
                         <MenuItem Command="Replace" Foreground="#FF212121"/>-->
+                        <MenuItem Command="{x:Static commands:UICommands.AddLyrics}" Foreground="#FF212121"/>
+                        <MenuItem Command="{x:Static commands:UICommands.EditCurrentLine}" Foreground="#FF212121"/>
                     </MenuItem>
-                    <MenuItem Header="帮助(_F)">
+                    <MenuItem Header="回放(_P)">
+                        <MenuItem Command="{x:Static commands:UICommands.LoadMedia}" Foreground="#FF212121"/>
+                        <MenuItem Command="{x:Static commands:UICommands.Playback}" Foreground="#FF212121"/>
+                    </MenuItem>
+                    <MenuItem Header="帮助(_H)">
                         <MenuItem Command="Help" Foreground="#FF212121"/>
+                        <MenuItem Command="{x:Static commands:UICommands.DoAppUpdate}" Foreground="#FF212121"/>
                         <Separator/>
                         <MenuItem Header="关于(_A)" Foreground="#FF212121"/>
                     </MenuItem>
@@ -105,6 +112,19 @@
                         <!--<Button Margin="3">
                             <visualIcon:Icon Type="ExportScript" Margin="3"/>
                         </Button>-->
+                    </ToolBar>
+                    <ToolBar Background="{x:Null}" Loaded="ToolBar_RemoveGrid">
+                        <Button Command="{x:Static commands:UICommands.AddLyrics}" Margin="3">
+                            <visualIcon:Icon Type="AddComment" Margin="3"/>
+                        </Button>
+                        <Button Command="{x:Static commands:UICommands.EditCurrentLine}" Margin="3">
+                            <visualIcon:Icon Type="EditConversation" Margin="3"/>
+                        </Button>
+                    </ToolBar>
+                    <ToolBar Background="{x:Null}" Loaded="ToolBar_RemoveGrid">
+                        <Button Command="{x:Static commands:UICommands.LoadMedia}" Margin="3">
+                            <visualIcon:Icon Type="Media" Margin="3"/>
+                        </Button>
                     </ToolBar>
                 </ToolBarTray>
             </Grid>
