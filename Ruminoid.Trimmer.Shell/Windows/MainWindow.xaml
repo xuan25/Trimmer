@@ -1,4 +1,4 @@
-﻿<controls:MetroWindow x:Class="Ruminoid.Trimmer.Shell.Windows.MainWindow"
+<controls:MetroWindow x:Class="Ruminoid.Trimmer.Shell.Windows.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -91,7 +91,7 @@
 
             <Grid Margin="0,32,0,0">
                 <ToolBarTray VerticalAlignment="Center" Background="{x:Null}">
-                    <ToolBar Background="{x:Null}" OverflowMode="Never" Loaded="ToolBar_RemoveGrid">
+                    <ToolBar Background="{x:Null}" Loaded="ToolBar_RemoveGrid">
                         <Button Margin="3">
                             <visualIcon:Icon Type="NewFile" Margin="3"/>
                         </Button>
