@@ -26,7 +26,6 @@ namespace Ruminoid.Trimmer.Shell.Commands
             typeof(UICommands),
             new InputGestureCollection(new List<InputGesture>
             {
-                new KeyGesture(Key.T, ModifierKeys.Control, "Ctrl+T"),
                 new KeyGesture(Key.Space, ModifierKeys.Control, "Ctrl+空格"),
                 new KeyGesture(Key.F6, ModifierKeys.None, "F6")
             }));
