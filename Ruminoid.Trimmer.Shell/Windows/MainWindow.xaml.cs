@@ -54,6 +54,8 @@ namespace Ruminoid.Trimmer.Shell.Windows
 
         private static readonly string SettingFileName = Path.Combine(ConfigHelper.UserDataFolder, "layout.xml");
 
+        #region Closing
+
         private void OnClosing(object sender, CancelEventArgs e)
         {
             Directory.CreateDirectory(Path.Combine(Environment.CurrentDirectory, "settings"));
@@ -68,6 +70,10 @@ namespace Ruminoid.Trimmer.Shell.Windows
 
             ConfigHelper.SaveConfig();
         }
+
+        #endregion
+
+        #region Loaded
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
@@ -94,6 +100,8 @@ namespace Ruminoid.Trimmer.Shell.Windows
                 TextEditorView.Current.DockControl.Show();
             }
         }
+
+        #endregion
 
         #region CaptionBar Hook
 
