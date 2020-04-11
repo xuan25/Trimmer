@@ -149,6 +149,22 @@ namespace Ruminoid.Trimmer.Shell.Helpers
 
         #endregion
 
+        #region MainWindow
+
+        private bool _hideWelcome;
+
+        public bool HideWelcome
+        {
+            get => _hideWelcome;
+            set
+            {
+                _hideWelcome = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
         #region PropertyChanged
 
         public event PropertyChangedEventHandler PropertyChanged;

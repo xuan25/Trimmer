@@ -9,6 +9,7 @@
         xmlns:yDock="clr-namespace:YDock;assembly=YDock"
         xmlns:commands="clr-namespace:Ruminoid.Trimmer.Shell.Commands"
         xmlns:visualIcon="clr-namespace:VisualIcon;assembly=VisualIcon"
+        xmlns:noti="clr-namespace:Enterwell.Clients.Wpf.Notifications.Controls;assembly=Enterwell.Clients.Wpf.Notifications"
         mc:Ignorable="d"
         FontFamily="Segoe UI"
         Background="{DynamicResource ThemeBrushKey}"
@@ -20,7 +21,8 @@
         SnapsToDevicePixels="True" Height="720" Width="1280"
         Title="Trimmer"
         MinHeight="720" MinWidth="1280" WindowStartupLocation="CenterScreen" 
-        Icon="/Ruminoid.Trimmer.Shell;component/Assets/logo_v1.ico">
+        Icon="/Ruminoid.Trimmer.Shell;component/Assets/logo_v1.ico"
+        Name="RootElement">
 
     <chrome:WindowChrome.Instance>
         <chrome:WindowChrome>
@@ -174,6 +176,9 @@
 
         <Grid Grid.Row="1" Margin="0">
             <yDock:DockManager x:Name="DockManager" Margin="0"/>
+            <noti:NotificationMessageContainer
+                Manager="{Binding ElementName=RootElement, Path=NotificationManager}"
+                HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
         </Grid>
 
         <Grid Grid.Row="2"

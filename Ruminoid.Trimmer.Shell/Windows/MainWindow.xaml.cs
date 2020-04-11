@@ -14,6 +14,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Xml.Linq;
+using Enterwell.Clients.Wpf.Notifications;
 using Ruminoid.Trimmer.Shell.Commands;
 using Ruminoid.Trimmer.Shell.Helpers;
 using Ruminoid.Trimmer.Shell.Views;
@@ -46,6 +47,12 @@ namespace Ruminoid.Trimmer.Shell.Windows
         }
 
         private static readonly string SettingFileName = Path.Combine(ConfigHelper.UserDataFolder, "layout.xml");
+
+        #region Notifications
+
+        public NotificationMessageManager NotificationManager { get; } = new NotificationMessageManager();
+
+        #endregion
 
         #region Closing
 
@@ -92,6 +99,30 @@ namespace Ruminoid.Trimmer.Shell.Windows
             {
                 LyricEditorView.Current.DockControl.Show();
             }
+
+            CheckBox welcomeBox = new CheckBox
+            {
+                Margin = new Thickness(12, 8, 12, 8),
+                HorizontalAlignment = HorizontalAlignment.Left,
+                Content = "不要再询问我。"
+            };
+            welcomeBox.Checked += (o, args) => ConfigHelper.Current.HideWelcome = true;
+            welcomeBox.Unchecked += (o, args) => ConfigHelper.Current.HideWelcome = false;
+            NotificationManager
+                .CreateMessage()
+                .Accent("#007ACC")
+                .Background("#333")
+                .HasMessage("欢迎回来！点击“添加歌词”或轻敲 Ctrl+T 以开始。")
+                .Dismiss().WithButton("添加歌词", button => { })
+                .Dismiss().WithButton("消除", button => { })
+                .WithAdditionalContent(ContentLocation.Bottom,
+                    new Border
+                    {
+                        BorderThickness = new Thickness(0, 1, 0, 0),
+                        BorderBrush = new SolidColorBrush(Color.FromArgb(128, 28, 28, 28)),
+                        Child = welcomeBox
+                    })
+                .Queue();
         }
 
         #endregion
