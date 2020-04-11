@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using System.Xml;
 using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Highlighting.Xshd;
+using Ruminoid.Trimmer.Shell.Helpers;
 using YDock.Interface;
 
 namespace Ruminoid.Trimmer.Shell.Views
@@ -40,6 +41,26 @@ namespace Ruminoid.Trimmer.Shell.Views
 
             InitializeComponent();
 
+            Loaded += OnLoaded;
+
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            ConfigHelper.Current.PropertyChanged += (o, args) =>
+            {
+                switch (args.PropertyName)
+                {
+                    case nameof(ConfigHelper.Current.EditorShowEndOfLine):
+                        Editor.Options.ShowEndOfLine = ConfigHelper.Current.EditorShowEndOfLine;
+                        break;
+                    case nameof(ConfigHelper.Current.EditorShowSpaces):
+                        Editor.Options.ShowSpaces = ConfigHelper.Current.EditorShowSpaces;
+                        break;
+                }
+            };
+            Editor.Options.ShowEndOfLine = ConfigHelper.Current.EditorShowEndOfLine;
+            Editor.Options.ShowSpaces = ConfigHelper.Current.EditorShowSpaces;
         }
 
         #region Current
