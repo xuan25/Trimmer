@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
@@ -64,8 +66,83 @@ namespace Ruminoid.Trimmer.Shell.Helpers
     }
 
     [Serializable]
-    public class Config
+    public class Config: INotifyPropertyChanged
     {
+
+        #region EditorConfig
+
+        private bool editorShowEndOfLine;
+
+        public bool EditorShowEndOfLine
+        {
+            get => editorShowEndOfLine;
+            set
+            {
+                editorShowEndOfLine = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool editorWordWrap;
+
+        public bool EditorWordWrap
+        {
+            get => editorWordWrap;
+            set
+            {
+                editorWordWrap = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool editorShowSpaces;
+
+        public bool EditorShowSpaces
+        {
+            get => editorShowSpaces;
+            set
+            {
+                editorShowSpaces = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool editorShowLineNumbers;
+
+        public bool EditorShowLineNumbers
+        {
+            get => editorShowLineNumbers;
+            set
+            {
+                editorShowLineNumbers = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double editorFontSize = 12;
+
+        public double EditorFontSize
+        {
+            get => editorFontSize;
+            set
+            {
+                editorFontSize = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region PropertyChanged
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
 
     }
 
