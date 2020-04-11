@@ -52,20 +52,6 @@ namespace Ruminoid.Trimmer.Shell.Windows
 
             #endregion
 
-            #region Playback
-
-            CommandBindings.Add(new CommandBinding(
-                UICommands.LoadMedia,
-                Commands_LoadMedia,
-                CanExecute));
-
-            CommandBindings.Add(new CommandBinding(
-                UICommands.Playback,
-                Command_Playback,
-                CanExecute));
-
-            #endregion
-
             #region Help
 
             CommandBindings.Add(new CommandBinding(
@@ -110,20 +96,6 @@ namespace Ruminoid.Trimmer.Shell.Windows
                 }
             }
             else Close();
-        }
-
-        #endregion
-
-        #region Playback
-
-        private void Commands_LoadMedia(object sender, ExecutedRoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void Command_Playback(object sender, ExecutedRoutedEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion

@@ -29,5 +29,14 @@ namespace Ruminoid.Trimmer.Shell.Commands
                 new KeyGesture(Key.Space, ModifierKeys.None, "空格")
             }));
 
+        public static RoutedUICommand UnloadMedia { get; } = new RoutedUICommand(
+            "卸载媒体(_U)",
+            "UnloadMedia",
+            typeof(UICommands),
+            new InputGestureCollection(new List<InputGesture>
+            {
+                new KeyGesture(Key.U, ModifierKeys.Control, "Ctrl+U")
+            }));
+
     }
 }

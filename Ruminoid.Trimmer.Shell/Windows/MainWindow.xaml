@@ -79,6 +79,7 @@
                     <MenuItem Header="回放(_P)">
                         <MenuItem Command="{x:Static commands:UICommands.LoadMedia}" Foreground="#FF212121"/>
                         <MenuItem Command="{x:Static commands:UICommands.Playback}" Foreground="#FF212121"/>
+                        <MenuItem Command="{x:Static commands:UICommands.UnloadMedia}" Foreground="#FF212121"/>
                     </MenuItem>
                     <MenuItem Header="帮助(_H)">
                         <MenuItem Command="Help" Foreground="#FF212121"/>
@@ -138,6 +139,9 @@
                     <ToolBar Background="{x:Null}" Loaded="ToolBar_RemoveGrid">
                         <Button Command="{x:Static commands:UICommands.LoadMedia}" Margin="3" ToolTip="加载媒体 (Ctrl+L)">
                             <visualIcon:Icon Type="Media" Margin="3"/>
+                        </Button>
+                        <Button Command="{x:Static commands:UICommands.UnloadMedia}" Margin="3" ToolTip="卸载媒体 (Ctrl+U)">
+                            <visualIcon:Icon Type="CloseDocument" Margin="3"/>
                         </Button>
                     </ToolBar>
                 </ToolBarTray>

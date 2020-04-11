@@ -25,12 +25,16 @@ namespace Ruminoid.Trimmer.Shell.Views
 
             Loaded += OnLoaded;
 
+            AddCommandBindings();
+
         }
 
         #region VLC
 
         private LibVLC _libVLC;
         private MediaPlayer _mediaPlayer;
+
+        private bool _mediaLoaded;
 
         #endregion
 
