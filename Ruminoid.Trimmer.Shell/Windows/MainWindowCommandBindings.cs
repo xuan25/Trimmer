@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using Ruminoid.Trimmer.Shell.Commands;
 using Ruminoid.Trimmer.Shell.Models;
+using Ruminoid.Trimmer.Shell.Views;
 using Squirrel;
 
 namespace Ruminoid.Trimmer.Shell.Windows
@@ -33,6 +34,20 @@ namespace Ruminoid.Trimmer.Shell.Windows
             CommandBindings.Add(new CommandBinding(
                 UICommands.ExitApp,
                 Command_ExitApp,
+                CanExecute));
+
+            #endregion
+
+            #region View
+
+            CommandBindings.Add(new CommandBinding(
+                UICommands.ShowLyricsEditorView,
+                (sender, args) => LyricEditorView.Current.DockControl?.Show(),
+                CanExecute));
+
+            CommandBindings.Add(new CommandBinding(
+                UICommands.ShowPlaybackView,
+                (sender, args) => PlaybackView.Current.DockControl?.Show(),
                 CanExecute));
 
             #endregion
