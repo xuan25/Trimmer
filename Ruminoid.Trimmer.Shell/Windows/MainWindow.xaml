@@ -191,6 +191,16 @@
                 </ToggleButton>-->
             </StackPanel>
 
+            <Grid Grid.Column="2" Margin="0,32,0,0">
+                <Slider Margin="12" Name="Wnd6"
+                        DataContext="{x:Static views:PlaybackView.Current}"
+                        Minimum="0" Maximum="1"
+                        IsEnabled="{Binding MediaLoaded}"
+                        Value="{Binding Position.Percentage}"
+                        PreviewMouseDown="Slider_OnPreviewMouseDown"
+                        PreviewMouseUp="Slider_OnPreviewMouseUp"/>
+            </Grid>
+
         </Grid>
 
         <Grid Grid.Row="1" Margin="0">

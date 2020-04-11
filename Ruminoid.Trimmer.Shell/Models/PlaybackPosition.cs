@@ -80,7 +80,14 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         private double _percentage;
 
-        public double Percentage => _percentage;
+        public double Percentage
+        {
+            get => _percentage;
+            set
+            {
+
+            }
+        }
 
         #endregion
 

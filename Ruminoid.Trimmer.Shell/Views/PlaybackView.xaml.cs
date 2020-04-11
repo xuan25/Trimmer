@@ -45,6 +45,7 @@ namespace Ruminoid.Trimmer.Shell.Views
             MediaPlayer = new MediaPlayer(_libVLC);
             VideoView.MediaPlayer = MediaPlayer;
             MediaPlayer.TimeChanged += (o, args) => Position.Time = args.Time;
+            MediaPlayer.LengthChanged += (o, args) => Position.Total = args.Length;
 
             AddCommandBindings();
 

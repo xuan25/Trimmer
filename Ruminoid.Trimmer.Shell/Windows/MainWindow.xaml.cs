@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -80,7 +81,7 @@ namespace Ruminoid.Trimmer.Shell.Windows
         {
             IntPtr hwnd = new WindowInteropHelper(this).Handle;
             HwndSource.FromHwnd(hwnd).AddHook(WndProc);
-            wndList = new List<FrameworkElement>() { Wnd1, Wnd2, Wnd3, Wnd4, Wnd5 };
+            wndList = new List<FrameworkElement>() { Wnd1, Wnd2, Wnd3, Wnd4, Wnd5, Wnd6 };
 
             if (File.Exists(SettingFileName))
             {
@@ -100,6 +101,10 @@ namespace Ruminoid.Trimmer.Shell.Windows
             {
                 LyricEditorView.Current.DockControl.Show();
             }
+
+            sliderBinding = new Binding();
+            sliderBinding.Source = PlaybackView.Current.Position;
+            sliderBinding.Path = new PropertyPath("Percentage");
 
             CheckBox welcomeBox = new CheckBox
             {
@@ -179,5 +184,26 @@ namespace Ruminoid.Trimmer.Shell.Windows
         }
 
         #endregion
+
+        private Binding sliderBinding;
+
+        private void Slider_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            BindingOperations.ClearBinding(Wnd6, RangeBase.ValueProperty);
+            Wnd6.Value = PlaybackView.Current.Position.Percentage;
+            Wnd6.ValueChanged += SliderOnValueChanged;
+        }
+
+        private void SliderOnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            PlaybackView.Current.MediaPlayer.Time = (long)(Wnd6.Value * PlaybackView.Current.Position.Total);
+            PlaybackView.Current.Position.Time = PlaybackView.Current.MediaPlayer.Time;
+        }
+
+        private void Slider_OnPreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            Wnd6.ValueChanged -= SliderOnValueChanged;
+            Wnd6.SetBinding(RangeBase.ValueProperty, sliderBinding);
+        }
     }
 }

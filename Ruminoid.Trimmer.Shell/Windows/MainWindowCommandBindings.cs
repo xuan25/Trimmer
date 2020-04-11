@@ -123,5 +123,6 @@ namespace Ruminoid.Trimmer.Shell.Windows
             e.CanExecute = true;
             e.Handled = true;
         }
+
     }
 }
