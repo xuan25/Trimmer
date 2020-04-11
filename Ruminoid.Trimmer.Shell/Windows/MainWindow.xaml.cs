@@ -42,6 +42,7 @@ namespace Ruminoid.Trimmer.Shell.Windows
             #region Document Register
 
             DockManager.RegisterDocument(LyricEditorView.Current);
+            DockManager.RegisterDock(PlaybackView.Current);
 
             #endregion
         }
