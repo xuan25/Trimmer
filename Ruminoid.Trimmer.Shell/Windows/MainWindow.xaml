@@ -109,7 +109,7 @@
             </Grid>
 
             <StackPanel Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal">
-                <Border BorderBrush="{DynamicResource BorderBrushKey}" BorderThickness="1,1,0,1">
+                <Border BorderBrush="{DynamicResource BorderBrushKey}" BorderThickness="1">
                     <Grid Background="{DynamicResource BackgroundBrushKey}">
                         <StackPanel Margin="6,0" VerticalAlignment="Center" Orientation="Horizontal">
                             <StackPanel Margin="6,0" VerticalAlignment="Center">
