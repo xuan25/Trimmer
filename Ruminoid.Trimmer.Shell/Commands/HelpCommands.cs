@@ -11,7 +11,7 @@ namespace Ruminoid.Trimmer.Shell.Commands
     {
 
         public static RoutedUICommand DoAppUpdate { get; } = new RoutedUICommand(
-            "检查更新",
+            "检查更新(_C)",
             "DoAppUpdate",
             typeof(UICommands),
             new InputGestureCollection(new List<InputGesture>()));

@@ -11,7 +11,7 @@ namespace Ruminoid.Trimmer.Shell.Commands
     {
 
         public static RoutedUICommand LoadMedia { get; } = new RoutedUICommand(
-            "加载媒体",
+            "加载媒体(_L)",
             "LoadMedia",
             typeof(UICommands),
             new InputGestureCollection(new List<InputGesture>
@@ -21,7 +21,7 @@ namespace Ruminoid.Trimmer.Shell.Commands
             }));
 
         public static RoutedUICommand Playback { get; } = new RoutedUICommand(
-            "播放/暂停",
+            "播放/暂停(_P)",
             "Playback",
             typeof(UICommands),
             new InputGestureCollection(new List<InputGesture>

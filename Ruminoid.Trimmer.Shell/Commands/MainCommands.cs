@@ -11,7 +11,7 @@ namespace Ruminoid.Trimmer.Shell.Commands
     {
 
         public static RoutedUICommand ExitApp { get; } = new RoutedUICommand(
-            "退出",
+            "退出(_E)",
             "Exit",
             typeof(UICommands),
             new InputGestureCollection(new List<InputGesture>()

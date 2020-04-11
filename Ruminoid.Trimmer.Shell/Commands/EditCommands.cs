@@ -11,7 +11,7 @@ namespace Ruminoid.Trimmer.Shell.Commands
     {
 
         public static RoutedUICommand AddLyrics { get; } = new RoutedUICommand(
-            "添加歌词...",
+            "添加歌词(_A)...",
             "AddLyrics",
             typeof(UICommands),
             new InputGestureCollection(new List<InputGesture>
@@ -21,7 +21,7 @@ namespace Ruminoid.Trimmer.Shell.Commands
             }));
 
         public static RoutedUICommand EditCurrentLine { get; } = new RoutedUICommand(
-            "编辑当前行...",
+            "编辑当前行(_E)...",
             "EditCurrentLine",
             typeof(UICommands),
             new InputGestureCollection(new List<InputGesture>
