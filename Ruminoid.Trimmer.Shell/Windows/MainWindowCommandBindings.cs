@@ -94,6 +94,7 @@ namespace Ruminoid.Trimmer.Shell.Windows
                         break;
                 }
             }
+            else Close();
         }
 
         #endregion
