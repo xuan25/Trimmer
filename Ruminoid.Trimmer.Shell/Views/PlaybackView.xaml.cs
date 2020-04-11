@@ -27,6 +27,12 @@ namespace Ruminoid.Trimmer.Shell.Views
             InitializeComponent();
         }
 
+        #region Current
+
+        public static PlaybackView Current { get; } = new PlaybackView();
+
+        #endregion
+
         #region DockSource
 
         public IDockControl DockControl { get; set; }
