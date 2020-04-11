@@ -63,6 +63,7 @@ namespace Ruminoid.Trimmer.Shell.Views
             };
             Editor.Options.ShowEndOfLine = ConfigHelper.Current.EditorShowEndOfLine;
             Editor.Options.ShowSpaces = ConfigHelper.Current.EditorShowSpaces;
+            Editor.Options.HighlightCurrentLine = true;
         }
 
         #endregion
