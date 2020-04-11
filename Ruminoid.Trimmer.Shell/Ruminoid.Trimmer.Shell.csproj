@@ -106,6 +106,9 @@
     <Compile Include="Commands\MainCommands.cs" />
     <Compile Include="Helpers\ConfigHelper.cs" />
     <Compile Include="Models\LrcModel.cs" />
+    <Compile Include="Views\LyricEditorView.xaml.cs">
+      <DependentUpon>LyricEditorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TextEditorView.xaml.cs">
       <DependentUpon>TextEditorView.xaml</DependentUpon>
     </Compile>
@@ -1295,6 +1298,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Styles\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LyricEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
