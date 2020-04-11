@@ -12,17 +12,28 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using YDock.Interface;
 
 namespace Ruminoid.Trimmer.Shell.Views
 {
     /// <summary>
     /// PlaybackView.xaml 的交互逻辑
     /// </summary>
-    public partial class PlaybackView : UserControl
+    public partial class PlaybackView : UserControl, IDockSource
     {
+
         public PlaybackView()
         {
             InitializeComponent();
         }
+
+        #region DockSource
+
+        public IDockControl DockControl { get; set; }
+        public string Header => "回放";
+        public ImageSource Icon => null;
+
+        #endregion
+
     }
 }
