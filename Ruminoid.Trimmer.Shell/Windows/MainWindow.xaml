@@ -10,6 +10,7 @@
         xmlns:commands="clr-namespace:Ruminoid.Trimmer.Shell.Commands"
         xmlns:visualIcon="clr-namespace:VisualIcon;assembly=VisualIcon"
         xmlns:noti="clr-namespace:Enterwell.Clients.Wpf.Notifications.Controls;assembly=Enterwell.Clients.Wpf.Notifications"
+        xmlns:views="clr-namespace:Ruminoid.Trimmer.Shell.Views"
         mc:Ignorable="d"
         FontFamily="Segoe UI"
         Background="{DynamicResource ThemeBrushKey}"
@@ -147,29 +148,31 @@
                 </ToolBarTray>
             </Grid>
 
-            <StackPanel Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal" Name="WndCaption">
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal" Name="WndCaption"
+                        DataContext="{x:Static views:PlaybackView.Current}">
                 <Border BorderBrush="{DynamicResource BorderBrushKey}" BorderThickness="0,1,0,0">
-                    <Grid Background="{DynamicResource BackgroundBrushKey}">
+                    <Grid Background="{DynamicResource BackgroundBrushKey}" Width="181">
                         <StackPanel Margin="6,0" VerticalAlignment="Center" Orientation="Horizontal">
                             <StackPanel Margin="6,0" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Position.MinuteDisplay}" FontSize="36" HorizontalAlignment="Center"/>
                                 <TextBlock Foreground="{DynamicResource BorderBrushKey}" Text="M" HorizontalAlignment="Center"/>
-                                <TextBlock Text="00" FontSize="36" HorizontalAlignment="Center"/>
                             </StackPanel>
-                            <TextBlock Text=":" FontSize="36" VerticalAlignment="Center" Margin="0,12,0,0"/>
+                            <TextBlock Text=":" FontSize="36" VerticalAlignment="Center" Margin="0,0,0,20"/>
                             <StackPanel Margin="6,0" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Position.SecondDisplay}" FontSize="36" HorizontalAlignment="Center"/>
                                 <TextBlock Foreground="{DynamicResource BorderBrushKey}" Text="S" HorizontalAlignment="Center"/>
-                                <TextBlock Text="00" FontSize="36" HorizontalAlignment="Center"/>
                             </StackPanel>
-                            <TextBlock Text="." FontSize="36" VerticalAlignment="Center" Margin="0,12,0,0"/>
+                            <TextBlock Text="." FontSize="36" VerticalAlignment="Center" Margin="0,0,0,20"/>
                             <StackPanel Margin="6,0" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Position.TimeCodeDisplay}" FontSize="36" HorizontalAlignment="Center"/>
                                 <TextBlock Foreground="{DynamicResource BorderBrushKey}" Text="Code" HorizontalAlignment="Center"/>
-                                <TextBlock Text="00" FontSize="36" HorizontalAlignment="Center"/>
                             </StackPanel>
                         </StackPanel>
                     </Grid>
                 </Border>
                 <ToggleButton HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                        Height="80" Width="80" Padding="0" Name="Wnd4">
+                        Height="80" Width="80" Padding="0" Name="Wnd4"
+                        IsEnabled="{Binding MediaLoaded}" IsChecked="{Binding Playing}">
                     <Grid Height="80" Width="80">
                         <visualIcon:Icon Type="Run" Width="35" Height="35" Size="2"
                                          HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,0"/>

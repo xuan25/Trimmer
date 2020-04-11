@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Threading;
 using LibVLCSharp.Shared;
 using YDock.Interface;
 using MediaPlayer = LibVLCSharp.Shared.MediaPlayer;
@@ -30,9 +31,7 @@ namespace Ruminoid.Trimmer.Shell.Views
         #region VLC
 
         private LibVLC _libVLC;
-        private MediaPlayer _mediaPlayer;
-
-        private bool _mediaLoaded;
+        public MediaPlayer MediaPlayer;
 
         #endregion
 
@@ -43,8 +42,9 @@ namespace Ruminoid.Trimmer.Shell.Views
 
             Core.Initialize();
             _libVLC = new LibVLC();
-            _mediaPlayer = new MediaPlayer(_libVLC);
-            VideoView.MediaPlayer = _mediaPlayer;
+            MediaPlayer = new MediaPlayer(_libVLC);
+            VideoView.MediaPlayer = MediaPlayer;
+            MediaPlayer.TimeChanged += (o, args) => Position.Time = args.Time;
 
             AddCommandBindings();
 
