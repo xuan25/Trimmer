@@ -53,6 +53,7 @@
                         <!--<MenuItem Command="New" Foreground="#FF212121"/>
                         <MenuItem Command="Open" Foreground="#FF212121"/>
                         <MenuItem Command="Close" Foreground="#FF212121"/>-->
+                        <MenuItem Command="Save" Foreground="#FF212121"/>
                         <Separator/>
                         <MenuItem Command="{x:Static commands:UICommands.ExitApp}" Foreground="#FF212121"/>
                     </MenuItem>
@@ -97,13 +98,13 @@
                         </Button>
                         <Button Margin="3">
                             <visualIcon:Icon Type="OpenFile" Margin="3"/>
-                        </Button>
-                        <Button Margin="3">
-                            <visualIcon:Icon Type="Save" Margin="3"/>
                         </Button>-->
-                        <Button Margin="3">
-                            <visualIcon:Icon Type="ExportScript" Margin="3"/>
+                        <Button Command="Save" Margin="3">
+                            <visualIcon:Icon Type="Save" Margin="3"/>
                         </Button>
+                        <!--<Button Margin="3">
+                            <visualIcon:Icon Type="ExportScript" Margin="3"/>
+                        </Button>-->
                     </ToolBar>
                 </ToolBarTray>
             </Grid>

@@ -19,6 +19,18 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         #region DataContext
 
+        private bool _modified;
+
+        public bool Modified
+        {
+            get => _modified;
+            set
+            {
+                _modified = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region PropertyChanged
