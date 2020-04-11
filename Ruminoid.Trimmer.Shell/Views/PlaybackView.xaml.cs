@@ -5,14 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using LibVLCSharp.Shared;
 using YDock.Interface;
+using MediaPlayer = LibVLCSharp.Shared.MediaPlayer;
 
 namespace Ruminoid.Trimmer.Shell.Views
 {
@@ -24,8 +20,33 @@ namespace Ruminoid.Trimmer.Shell.Views
 
         public PlaybackView()
         {
+
             InitializeComponent();
+
+            Loaded += OnLoaded;
+
         }
+
+        #region VLC
+
+        private LibVLC _libVLC;
+        private MediaPlayer _mediaPlayer;
+
+        #endregion
+
+        #region Loaded
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+
+            Core.Initialize();
+            _libVLC = new LibVLC();
+            _mediaPlayer = new MediaPlayer(_libVLC);
+            VideoView.MediaPlayer = _mediaPlayer;
+
+        }
+
+        #endregion
 
         #region Current
 
