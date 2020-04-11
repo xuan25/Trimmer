@@ -124,6 +124,9 @@
     <Compile Include="Views\PlaybackView.xaml.cs">
       <DependentUpon>PlaybackView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PlaybackViewCommandBinding.cs">
+      <DependentUpon>PlaybackView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TextEditorView.xaml.cs">
       <DependentUpon>TextEditorView.xaml</DependentUpon>
     </Compile>
