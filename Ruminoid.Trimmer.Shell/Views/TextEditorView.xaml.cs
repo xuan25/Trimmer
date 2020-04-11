@@ -49,21 +49,21 @@ namespace Ruminoid.Trimmer.Shell.Views
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            ConfigHelper.Current.PropertyChanged += (o, args) =>
-            {
-                switch (args.PropertyName)
-                {
-                    case nameof(ConfigHelper.Current.EditorShowEndOfLine):
-                        Editor.Options.ShowEndOfLine = ConfigHelper.Current.EditorShowEndOfLine;
-                        break;
-                    case nameof(ConfigHelper.Current.EditorShowSpaces):
-                        Editor.Options.ShowSpaces = ConfigHelper.Current.EditorShowSpaces;
-                        break;
-                }
-            };
-            Editor.Options.ShowEndOfLine = ConfigHelper.Current.EditorShowEndOfLine;
-            Editor.Options.ShowSpaces = ConfigHelper.Current.EditorShowSpaces;
-            Editor.Options.HighlightCurrentLine = true;
+            //ConfigHelper.Current.PropertyChanged += (o, args) =>
+            //{
+            //    switch (args.PropertyName)
+            //    {
+            //        case nameof(ConfigHelper.Current.EditorShowEndOfLine):
+            //            Editor.Options.ShowEndOfLine = ConfigHelper.Current.EditorShowEndOfLine;
+            //            break;
+            //        case nameof(ConfigHelper.Current.EditorShowSpaces):
+            //            Editor.Options.ShowSpaces = ConfigHelper.Current.EditorShowSpaces;
+            //            break;
+            //    }
+            //};
+            //Editor.Options.ShowEndOfLine = ConfigHelper.Current.EditorShowEndOfLine;
+            //Editor.Options.ShowSpaces = ConfigHelper.Current.EditorShowSpaces;
+            //Editor.Options.HighlightCurrentLine = true;
         }
 
         #endregion

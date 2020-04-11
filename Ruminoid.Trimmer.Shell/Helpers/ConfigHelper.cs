@@ -71,65 +71,65 @@ namespace Ruminoid.Trimmer.Shell.Helpers
 
         #region EditorConfig
 
-        private bool _editorShowEndOfLine;
+        //private bool _editorShowEndOfLine;
 
-        public bool EditorShowEndOfLine
-        {
-            get => _editorShowEndOfLine;
-            set
-            {
-                _editorShowEndOfLine = value;
-                OnPropertyChanged();
-            }
-        }
+        //public bool EditorShowEndOfLine
+        //{
+        //    get => _editorShowEndOfLine;
+        //    set
+        //    {
+        //        _editorShowEndOfLine = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private bool _editorWordWrap;
+        //private bool _editorWordWrap;
 
-        public bool EditorWordWrap
-        {
-            get => _editorWordWrap;
-            set
-            {
-                _editorWordWrap = value;
-                OnPropertyChanged();
-            }
-        }
+        //public bool EditorWordWrap
+        //{
+        //    get => _editorWordWrap;
+        //    set
+        //    {
+        //        _editorWordWrap = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private bool _editorShowSpaces;
+        //private bool _editorShowSpaces;
 
-        public bool EditorShowSpaces
-        {
-            get => _editorShowSpaces;
-            set
-            {
-                _editorShowSpaces = value;
-                OnPropertyChanged();
-            }
-        }
+        //public bool EditorShowSpaces
+        //{
+        //    get => _editorShowSpaces;
+        //    set
+        //    {
+        //        _editorShowSpaces = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private bool _editorShowLineNumbers;
+        //private bool _editorShowLineNumbers;
 
-        public bool EditorShowLineNumbers
-        {
-            get => _editorShowLineNumbers;
-            set
-            {
-                _editorShowLineNumbers = value;
-                OnPropertyChanged();
-            }
-        }
+        //public bool EditorShowLineNumbers
+        //{
+        //    get => _editorShowLineNumbers;
+        //    set
+        //    {
+        //        _editorShowLineNumbers = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private double _editorFontSize = 12;
+        //private double _editorFontSize = 12;
 
-        public double EditorFontSize
-        {
-            get => _editorFontSize;
-            set
-            {
-                _editorFontSize = value;
-                OnPropertyChanged();
-            }
-        }
+        //public double EditorFontSize
+        //{
+        //    get => _editorFontSize;
+        //    set
+        //    {
+        //        _editorFontSize = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         #endregion
 
