@@ -16,10 +16,10 @@ namespace Ruminoid.Trimmer.Shell.Windows
 
             #region File
 
-            CommandBindings.Add(new CommandBinding(
-                UICommands.ExitApp,
-                (o, args) => Close(),
-                CanExecute));
+            //CommandBindings.Add(new CommandBinding(
+            //    UICommands.ExitApp,
+            //    (o, args) => Close(),
+            //    CanExecute));
 
             #endregion
 
