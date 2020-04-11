@@ -45,6 +45,8 @@ namespace Ruminoid.Trimmer.Shell.Views
 
         }
 
+        #region Loaded
+
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             ConfigHelper.Current.PropertyChanged += (o, args) =>
@@ -62,6 +64,8 @@ namespace Ruminoid.Trimmer.Shell.Views
             Editor.Options.ShowEndOfLine = ConfigHelper.Current.EditorShowEndOfLine;
             Editor.Options.ShowSpaces = ConfigHelper.Current.EditorShowSpaces;
         }
+
+        #endregion
 
         #region Current
 
