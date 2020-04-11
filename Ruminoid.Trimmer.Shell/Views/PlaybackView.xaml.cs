@@ -25,8 +25,6 @@ namespace Ruminoid.Trimmer.Shell.Views
 
             Loaded += OnLoaded;
 
-            AddCommandBindings();
-
         }
 
         #region VLC
@@ -47,6 +45,8 @@ namespace Ruminoid.Trimmer.Shell.Views
             _libVLC = new LibVLC();
             _mediaPlayer = new MediaPlayer(_libVLC);
             VideoView.MediaPlayer = _mediaPlayer;
+
+            AddCommandBindings();
 
         }
 
