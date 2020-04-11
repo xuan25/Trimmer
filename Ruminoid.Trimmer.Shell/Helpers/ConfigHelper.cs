@@ -133,6 +133,22 @@ namespace Ruminoid.Trimmer.Shell.Helpers
 
         #endregion
 
+        #region ExportConfig
+
+        private bool exportAverageWords;
+
+        public bool ExportAverageWords
+        {
+            get => exportAverageWords;
+            set
+            {
+                exportAverageWords = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
         #region PropertyChanged
 
         public event PropertyChangedEventHandler PropertyChanged;
