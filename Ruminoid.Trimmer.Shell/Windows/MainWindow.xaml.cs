@@ -36,14 +36,7 @@ namespace Ruminoid.Trimmer.Shell.Windows
 
             Closed += (sender, args) => Application.Current.Shutdown(0);
 
-            #region Command Bindings
-
-            CommandBindings.Add(new CommandBinding(
-                UICommands.ExitApp,
-                (o, args) => Close(),
-                (o, args) => args.CanExecute = true));
-
-            #endregion
+            AddCommandBindings();
 
             #region Document Register
 
