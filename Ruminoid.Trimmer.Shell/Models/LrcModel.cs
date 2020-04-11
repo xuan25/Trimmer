@@ -19,18 +19,6 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         #region DataContext
 
-        private bool _isLoaded;
-
-        public bool IsLoaded
-        {
-            get => _isLoaded;
-            set
-            {
-                _isLoaded = value;
-                OnPropertyChanged();
-            }
-        }
-
         #endregion
 
         #region PropertyChanged

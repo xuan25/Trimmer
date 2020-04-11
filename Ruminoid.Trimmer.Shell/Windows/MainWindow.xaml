@@ -50,14 +50,14 @@
                 <Menu x:Name="Wnd2" Grid.Column="1" Background="{x:Null}" Foreground="White"
                       VerticalAlignment="Center" HorizontalAlignment="Left">
                     <MenuItem Header="文件(_F)">
-                        <MenuItem Command="New" Foreground="#FF212121"/>
+                        <!--<MenuItem Command="New" Foreground="#FF212121"/>
                         <MenuItem Command="Open" Foreground="#FF212121"/>
-                        <MenuItem Command="Close" Foreground="#FF212121"/>
+                        <MenuItem Command="Close" Foreground="#FF212121"/>-->
                         <Separator/>
                         <MenuItem Command="{x:Static commands:UICommands.ExitApp}" Foreground="#FF212121"/>
                     </MenuItem>
                     <MenuItem Header="编辑(_E)">
-                        <MenuItem Command="Undo" Foreground="#FF212121"/>
+                        <!--<MenuItem Command="Undo" Foreground="#FF212121"/>
                         <MenuItem Command="Redo" Foreground="#FF212121"/>
                         <Separator/>
                         <MenuItem Command="Cut" Foreground="#FF212121"/>
@@ -65,7 +65,7 @@
                         <MenuItem Command="Paste" Foreground="#FF212121"/>
                         <Separator/>
                         <MenuItem Command="Find" Foreground="#FF212121"/>
-                        <MenuItem Command="Replace" Foreground="#FF212121"/>
+                        <MenuItem Command="Replace" Foreground="#FF212121"/>-->
                     </MenuItem>
                     <MenuItem Header="帮助(_F)">
                         <MenuItem Command="Help" Foreground="#FF212121"/>
@@ -90,9 +90,9 @@
             </Grid.ColumnDefinitions>
 
             <Grid Margin="0,32,0,0">
-                <ToolBarTray VerticalAlignment="Center" Background="{x:Null}" Name="Wnd6" HorizontalAlignment="Left">
+                <ToolBarTray VerticalAlignment="Center" Background="{x:Null}" Name="Wnd5" HorizontalAlignment="Left">
                     <ToolBar Background="{x:Null}" Loaded="ToolBar_RemoveGrid">
-                        <Button Margin="3">
+                        <!--<Button Margin="3">
                             <visualIcon:Icon Type="NewFile" Margin="3"/>
                         </Button>
                         <Button Margin="3">
@@ -100,7 +100,7 @@
                         </Button>
                         <Button Margin="3">
                             <visualIcon:Icon Type="Save" Margin="3"/>
-                        </Button>
+                        </Button>-->
                         <Button Margin="3">
                             <visualIcon:Icon Type="ExportScript" Margin="3"/>
                         </Button>
@@ -109,7 +109,7 @@
             </Grid>
 
             <StackPanel Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal" Name="WndCaption">
-                <Border BorderBrush="{DynamicResource BorderBrushKey}" BorderThickness="1">
+                <Border BorderBrush="{DynamicResource BorderBrushKey}" BorderThickness="0,1,0,0">
                     <Grid Background="{DynamicResource BackgroundBrushKey}">
                         <StackPanel Margin="6,0" VerticalAlignment="Center" Orientation="Horizontal">
                             <StackPanel Margin="6,0" VerticalAlignment="Center">
@@ -138,15 +138,15 @@
                                    Margin="-2,0,0,6" Text="播放/暂停"/>
                     </Grid>
                 </ToggleButton>
-                <ToggleButton HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                        Height="80" Width="80" Padding="0" Name="Wnd5">
+                <!--<ToggleButton HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Height="80" Width="80" Padding="0" Name="Wnd6">
                     <Grid Height="80" Width="80">
                         <visualIcon:Icon Type="Timeline" Width="35" Height="35" Size="2"
                                          HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,0"/>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom"
                                    Margin="-2,0,0,6" Text="K轴"/>
                     </Grid>
-                </ToggleButton>
+                </ToggleButton>-->
             </StackPanel>
 
         </Grid>

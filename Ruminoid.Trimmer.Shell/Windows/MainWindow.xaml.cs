@@ -40,7 +40,7 @@ namespace Ruminoid.Trimmer.Shell.Windows
 
             #region Document Register
 
-            DockManager.RegisterDocument(TextEditorView.Current);
+            DockManager.RegisterDocument(LyricEditorView.Current);
 
             #endregion
         }
@@ -72,7 +72,7 @@ namespace Ruminoid.Trimmer.Shell.Windows
         {
             IntPtr hwnd = new WindowInteropHelper(this).Handle;
             HwndSource.FromHwnd(hwnd).AddHook(WndProc);
-            wndList = new List<FrameworkElement>() { Wnd1, Wnd2, Wnd3, Wnd4, Wnd5, Wnd6 };
+            wndList = new List<FrameworkElement>() { Wnd1, Wnd2, Wnd3, Wnd4, Wnd5 };
 
             if (File.Exists(SettingFileName))
             {
@@ -90,7 +90,7 @@ namespace Ruminoid.Trimmer.Shell.Windows
             }
             else
             {
-                TextEditorView.Current.DockControl.Show();
+                LyricEditorView.Current.DockControl.Show();
             }
         }
 
