@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Ruminoid.Trimmer.Shell.Models
 {
 
-    public sealed class LrcModel : Modify, INotifyPropertyChanged
+    public sealed class LrcModel : Modify
     {
 
         #region Current
@@ -60,7 +60,7 @@ namespace Ruminoid.Trimmer.Shell.Models
             set
             {
                 _items = value;
-                OnPropertyChanged();
+                OnLrcModelPropertyChanged();
             }
         }
 
@@ -68,11 +68,9 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         #region PropertyChanged
 
-        public new event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private void OnLrcModelPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            OnPropertyChanged(propertyName);
             IsModified = true;
         }
 
@@ -80,7 +78,7 @@ namespace Ruminoid.Trimmer.Shell.Models
 
     }
 
-    public sealed class LrcLine : ModifyTarget, INotifyPropertyChanged
+    public sealed class LrcLine : ModifyTarget
     {
 
         #region Constructors
@@ -102,7 +100,7 @@ namespace Ruminoid.Trimmer.Shell.Models
             set
             {
                 _items = value;
-                OnPropertyChanged();
+                OnLrcLinePropertyChanged();
             }
         }
 
@@ -110,11 +108,9 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         #region PropertyChanged
 
-        public new event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private void OnLrcLinePropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            OnPropertyChanged(propertyName);
             IsModified = true;
         }
 
@@ -122,7 +118,7 @@ namespace Ruminoid.Trimmer.Shell.Models
 
     }
 
-    public sealed class LrcChar : ModifyTarget, INotifyPropertyChanged
+    public sealed class LrcChar : ModifyTarget
     {
 
         #region Constructors
@@ -156,7 +152,7 @@ namespace Ruminoid.Trimmer.Shell.Models
             set
             {
                 _char = value;
-                OnPropertyChanged();
+                OnLrcCharPropertyChanged();
             }
         }
 
@@ -168,7 +164,7 @@ namespace Ruminoid.Trimmer.Shell.Models
             set
             {
                 _position = value;
-                OnPropertyChanged();
+                OnLrcCharPropertyChanged();
             }
         }
 
@@ -176,11 +172,9 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         #region PropertyChanged
 
-        public new event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private void OnLrcCharPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            OnPropertyChanged(propertyName);
             IsModified = true;
         }
 

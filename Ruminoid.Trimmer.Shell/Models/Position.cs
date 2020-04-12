@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ruminoid.Trimmer.Shell.Models
 {
-    public class Position : Modify, INotifyPropertyChanged
+    public class Position : Modify
     {
 
         #region Constructors
