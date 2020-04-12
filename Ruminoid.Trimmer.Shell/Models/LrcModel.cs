@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Ruminoid.Trimmer.Shell.Models
 {
 
-    public sealed class LrcModel : INotifyPropertyChanged
+    public sealed class LrcModel : Modified, INotifyPropertyChanged
     {
 
         #region Current
@@ -20,18 +20,6 @@ namespace Ruminoid.Trimmer.Shell.Models
         #endregion
 
         #region DataContext
-
-        private bool _modified;
-
-        public bool Modified
-        {
-            get => _modified;
-            set
-            {
-                _modified = value;
-                OnPropertyChanged();
-            }
-        }
 
         #endregion
 
@@ -45,6 +33,17 @@ namespace Ruminoid.Trimmer.Shell.Models
                 {
                     new LrcChar("你", new Position(0, 0, 0)),
                     new LrcChar("好", new Position(0, 1, 0)),
+                    new LrcChar("，", new Position(0, 2, 0)),
+                    new LrcChar("世", new Position(0, 3, 0)),
+                    new LrcChar("界", new Position(0, 4, 0))
+                }
+            },
+            new LrcLine()
+            {
+                Items = new ObservableCollection<LrcChar>()
+                {
+                    new LrcChar("再", new Position(0, 0, 0)),
+                    new LrcChar("见", new Position(0, 1, 0)),
                     new LrcChar("，", new Position(0, 2, 0)),
                     new LrcChar("世", new Position(0, 3, 0)),
                     new LrcChar("界", new Position(0, 4, 0))
@@ -66,19 +65,29 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         #region PropertyChanged
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public new event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            IsModified = true;
         }
 
         #endregion
 
     }
 
-    public sealed class LrcLine : INotifyPropertyChanged
+    public sealed class LrcLine : Modified, INotifyPropertyChanged
     {
+
+        #region Constructors
+
+        public LrcLine()
+        {
+
+        }
+
+        #endregion
 
         #region Items
 
@@ -98,18 +107,19 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         #region PropertyChanged
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public new event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            IsModified = true;
         }
 
         #endregion
 
     }
 
-    public sealed class LrcChar : INotifyPropertyChanged
+    public sealed class LrcChar : Modified, INotifyPropertyChanged
     {
 
         #region Constructors
@@ -119,10 +129,16 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         }
 
+        public LrcChar(string chr)
+        {
+            Char = chr;
+        }
+
         public LrcChar(string chr, Position position)
         {
             Char = chr;
             Position = position;
+            IsModified = true;
         }
 
         #endregion
@@ -157,11 +173,12 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         #region PropertyChanged
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public new event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            IsModified = true;
         }
 
         #endregion
