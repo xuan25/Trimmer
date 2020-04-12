@@ -37,7 +37,20 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         #region Items
 
-        private ObservableCollection<LrcLine> _items = new ObservableCollection<LrcLine>();
+        private ObservableCollection<LrcLine> _items = new ObservableCollection<LrcLine>()
+        {
+            new LrcLine()
+            {
+                Items = new ObservableCollection<LrcChar>()
+                {
+                    new LrcChar("你", new PlaybackPosition(0, 0, 0)),
+                    new LrcChar("好", new PlaybackPosition(0, 1, 0)),
+                    new LrcChar("，", new PlaybackPosition(0, 2, 0)),
+                    new LrcChar("世", new PlaybackPosition(0, 3, 0)),
+                    new LrcChar("界", new PlaybackPosition(0, 4, 0))
+                }
+            }
+        };
 
         public ObservableCollection<LrcLine> Items
         {
@@ -98,6 +111,49 @@ namespace Ruminoid.Trimmer.Shell.Models
 
     public sealed class LrcChar : INotifyPropertyChanged
     {
+
+        #region Constructors
+
+        public LrcChar()
+        {
+
+        }
+
+        public LrcChar(string chr, PlaybackPosition position)
+        {
+            Char = chr;
+            Position = position;
+        }
+
+        #endregion
+
+        #region DataContext
+
+        private string _char = "";
+
+        public string Char
+        {
+            get => _char;
+            set
+            {
+                _char = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private PlaybackPosition _position = new PlaybackPosition();
+
+        public PlaybackPosition Position
+        {
+            get => _position;
+            set
+            {
+                _position = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
 
         #region PropertyChanged
 

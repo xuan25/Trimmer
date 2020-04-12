@@ -39,7 +39,7 @@
             </Grid>
             <StackPanel.Style>
                 <Style TargetType="StackPanel">
-                    <Setter Property="Visibility" Value="Hidden"></Setter>
+                    <Setter Property="Visibility" Value="Hidden"/>
                     <Style.Triggers>
                         <DataTrigger
                             Binding="{Binding Items.Count, Mode=OneWay}" Value="0">
