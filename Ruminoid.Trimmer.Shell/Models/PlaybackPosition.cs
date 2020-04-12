@@ -11,6 +11,27 @@ namespace Ruminoid.Trimmer.Shell.Models
     public class PlaybackPosition: INotifyPropertyChanged
     {
 
+        #region Constructors
+
+        public PlaybackPosition()
+        {
+
+        }
+
+        public PlaybackPosition(long time)
+        {
+            Time = time;
+        }
+
+        public PlaybackPosition(int minute, int second, int timeCode)
+        {
+            Minute = minute;
+            Second = second;
+            TimeCode = timeCode;
+        }
+
+        #endregion
+
         #region DataContext
 
         private long _time;
