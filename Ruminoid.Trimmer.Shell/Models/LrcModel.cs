@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Ruminoid.Trimmer.Shell.Models
 {
 
-    public sealed class LrcModel : Modified, INotifyPropertyChanged
+    public sealed class LrcModel : Modify, INotifyPropertyChanged
     {
 
         #region Current
@@ -77,7 +77,7 @@ namespace Ruminoid.Trimmer.Shell.Models
 
     }
 
-    public sealed class LrcLine : Modified, INotifyPropertyChanged
+    public sealed class LrcLine : Modify, INotifyPropertyChanged
     {
 
         #region Constructors
@@ -119,7 +119,7 @@ namespace Ruminoid.Trimmer.Shell.Models
 
     }
 
-    public sealed class LrcChar : Modified, INotifyPropertyChanged
+    public sealed class LrcChar : Modify, INotifyPropertyChanged
     {
 
         #region Constructors

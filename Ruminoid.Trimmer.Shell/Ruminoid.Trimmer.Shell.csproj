@@ -124,6 +124,7 @@
     <Compile Include="Commands\ViewCommands.cs" />
     <Compile Include="Helpers\ConfigHelper.cs" />
     <Compile Include="Models\LrcModel.cs" />
+    <Compile Include="Models\Modify.cs" />
     <Compile Include="Models\Position.cs" />
     <Compile Include="Views\LyricEditorView.xaml.cs">
       <DependentUpon>LyricEditorView.xaml</DependentUpon>
