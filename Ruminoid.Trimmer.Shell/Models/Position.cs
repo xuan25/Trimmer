@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ruminoid.Trimmer.Shell.Models
 {
-    public class Position: INotifyPropertyChanged
+    public class Position : Modified, INotifyPropertyChanged
     {
 
         #region Constructors
@@ -21,6 +21,7 @@ namespace Ruminoid.Trimmer.Shell.Models
         public Position(long time)
         {
             Time = time;
+            IsModified = true;
         }
 
         public Position(int minute, int second, int timeCode)
@@ -28,6 +29,7 @@ namespace Ruminoid.Trimmer.Shell.Models
             Minute = minute;
             Second = second;
             TimeCode = timeCode;
+            IsModified = true;
         }
 
         #endregion
@@ -147,7 +149,7 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         #region PropertyChanged
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public new event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged()
         {
@@ -160,6 +162,7 @@ namespace Ruminoid.Trimmer.Shell.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MinuteDisplay)));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SecondDisplay)));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TimeCodeDisplay)));
+            IsModified = true;
         }
 
         #endregion
