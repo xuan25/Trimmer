@@ -71,7 +71,7 @@ namespace Ruminoid.Trimmer.Shell.Views
 
         private void Command_Playback(object sender, ExecutedRoutedEventArgs e)
         {
-            if (MediaLoaded) _playing = !_playing;
+            if (MediaLoaded) Playing = !Playing;
         }
 
         private void Command_UnloadMedia(object sender, ExecutedRoutedEventArgs e)
