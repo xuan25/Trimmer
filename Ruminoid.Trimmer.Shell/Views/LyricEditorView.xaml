@@ -52,7 +52,54 @@
 
         <ListView Background="{x:Null}" Foreground="White" Name="RootView"
                   DataContext="{x:Static models:LrcModel.Current}"
-                  ItemsSource="{Binding Items}">
+                  ItemsSource="{Binding Items}"
+                  SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid>
+                            <ListView  Background="{x:Null}" Foreground="White"
+                                       ItemsSource="{Binding Items}"
+                                       SelectionMode="Single">
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <TextBlock Text="{Binding Char}"
+                                                       FontSize="36" FontWeight="Bold">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Foreground" Value="White"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsCompleted}">
+                                                                <Setter Property="Foreground" Value="LawnGreen"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding IsModified}">
+                                                                <Setter Property="Foreground" Value="{DynamicResource AccentBrushKey}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <TextBlock Text="SHOULD AT RIGHT"/>
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
     </Grid>
 
