@@ -22,7 +22,7 @@
     </UserControl.Resources>
 
     <Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="250">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Visibility="Hidden">
             <Grid Margin="12">
                 <TextBlock Style="{StaticResource BgNotiStyle}" Text="添加歌词" HorizontalAlignment="Left"/>
                 <TextBlock Style="{StaticResource BgNotiStyle}" Text="Ctrl + T" HorizontalAlignment="Right"></TextBlock>
@@ -35,7 +35,19 @@
                 <TextBlock Style="{StaticResource BgNotiStyle}" Text="播放/暂停" HorizontalAlignment="Left"/>
                 <TextBlock Style="{StaticResource BgNotiStyle}" Text="空格" HorizontalAlignment="Right"></TextBlock>
             </Grid>
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=RootView, Path=Items.Count}" Value="0">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
         </StackPanel>
+
+        <ListView Background="{x:Null}" Foreground="White" Name="RootView">
+        </ListView>
     </Grid>
 
 </UserControl>

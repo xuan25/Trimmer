@@ -33,8 +33,13 @@ namespace Ruminoid.Trimmer.Shell.Views
 
         #endregion
 
+        #region DockSource
+
         public IDockControl DockControl { get; set; }
         public string Header => "编辑";
         public ImageSource Icon => null;
+
+        #endregion
+
     }
 }
