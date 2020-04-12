@@ -27,7 +27,7 @@ namespace Ruminoid.Trimmer.Shell.Windows
                 Command_Save,
                 (sender, args) =>
                 {
-                    args.CanExecute = LrcModel.Current.Modified;
+                    args.CanExecute = LrcModel.Current.IsModified;
                     args.Handled = true;
                 }));
 
@@ -76,7 +76,7 @@ namespace Ruminoid.Trimmer.Shell.Windows
 
         private void Command_ExitApp(object sender, ExecutedRoutedEventArgs e)
         {
-            if (LrcModel.Current.Modified)
+            if (LrcModel.Current.IsModified)
             {
                 MessageBoxResult result = MessageBox.Show(
                     "存在未保存的修改。是否仍要退出？",
