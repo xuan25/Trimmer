@@ -77,7 +77,7 @@ namespace Ruminoid.Trimmer.Shell.Models
 
     }
 
-    public sealed class LrcLine : Modify, INotifyPropertyChanged
+    public sealed class LrcLine : ModifyTarget, INotifyPropertyChanged
     {
 
         #region Constructors
@@ -119,7 +119,7 @@ namespace Ruminoid.Trimmer.Shell.Models
 
     }
 
-    public sealed class LrcChar : Modify, INotifyPropertyChanged
+    public sealed class LrcChar : ModifyTarget, INotifyPropertyChanged
     {
 
         #region Constructors
