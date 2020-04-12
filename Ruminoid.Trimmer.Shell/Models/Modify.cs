@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace Ruminoid.Trimmer.Shell.Models
 {
-    public abstract class Modified : INotifyPropertyChanged
+
+    public abstract class Modify : INotifyPropertyChanged
     {
 
         private bool _isModified;
@@ -26,4 +27,5 @@ namespace Ruminoid.Trimmer.Shell.Models
         public event PropertyChangedEventHandler PropertyChanged;
 
     }
+
 }
