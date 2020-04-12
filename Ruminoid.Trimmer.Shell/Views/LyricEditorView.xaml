@@ -13,7 +13,29 @@
              TextOptions.TextFormattingMode="Display"
              SnapsToDevicePixels="True"
              Name="RootElement">
+
+    <UserControl.Resources>
+        <Style x:Key="BgNotiStyle" TargetType="TextBlock">
+            <Setter Property="Opacity" Value="0.5"/>
+            <Setter Property="FontSize" Value="16"></Setter>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
-            
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="250">
+            <Grid Margin="12">
+                <TextBlock Style="{StaticResource BgNotiStyle}" Text="添加歌词" HorizontalAlignment="Left"/>
+                <TextBlock Style="{StaticResource BgNotiStyle}" Text="Ctrl + T" HorizontalAlignment="Right"></TextBlock>
+            </Grid>
+            <Grid Margin="12">
+                <TextBlock Style="{StaticResource BgNotiStyle}" Text="加载媒体" HorizontalAlignment="Left"/>
+                <TextBlock Style="{StaticResource BgNotiStyle}" Text="Ctrl + L" HorizontalAlignment="Right"></TextBlock>
+            </Grid>
+            <Grid Margin="12">
+                <TextBlock Style="{StaticResource BgNotiStyle}" Text="播放/暂停" HorizontalAlignment="Left"/>
+                <TextBlock Style="{StaticResource BgNotiStyle}" Text="空格" HorizontalAlignment="Right"></TextBlock>
+            </Grid>
+        </StackPanel>
     </Grid>
+
 </UserControl>
