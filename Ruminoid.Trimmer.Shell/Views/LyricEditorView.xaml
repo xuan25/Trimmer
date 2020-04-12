@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Ruminoid.Trimmer.Shell.Views"
+             xmlns:models="clr-namespace:Ruminoid.Trimmer.Shell.Models"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              FontFamily="Segoe UI"
@@ -22,7 +23,8 @@
     </UserControl.Resources>
 
     <Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Visibility="Hidden">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="250"
+                    DataContext="{x:Static models:LrcModel.Current}">
             <Grid Margin="12">
                 <TextBlock Style="{StaticResource BgNotiStyle}" Text="添加歌词" HorizontalAlignment="Left"/>
                 <TextBlock Style="{StaticResource BgNotiStyle}" Text="Ctrl + T" HorizontalAlignment="Right"></TextBlock>
@@ -37,8 +39,10 @@
             </Grid>
             <StackPanel.Style>
                 <Style TargetType="StackPanel">
+                    <Setter Property="Visibility" Value="Hidden"></Setter>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding ElementName=RootView, Path=Items.Count}" Value="0">
+                        <DataTrigger
+                            Binding="{Binding Items.Count, Mode=OneWay}" Value="0">
                             <Setter Property="Visibility" Value="Visible"/>
                         </DataTrigger>
                     </Style.Triggers>
@@ -46,7 +50,9 @@
             </StackPanel.Style>
         </StackPanel>
 
-        <ListView Background="{x:Null}" Foreground="White" Name="RootView">
+        <ListView Background="{x:Null}" Foreground="White" Name="RootView"
+                  DataContext="{x:Static models:LrcModel.Current}"
+                  ItemsSource="{Binding Items}">
         </ListView>
     </Grid>
 
