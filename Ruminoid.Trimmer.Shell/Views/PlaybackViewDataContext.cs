@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using MetroRadiance.UI;
 using Ruminoid.Trimmer.Shell.Models;
 
 namespace Ruminoid.Trimmer.Shell.Views
@@ -38,6 +39,8 @@ namespace Ruminoid.Trimmer.Shell.Views
                 if (!MediaLoaded) return;
                 _playing = value;
                 MediaPlayer.SetPause(!value);
+                if (value) ThemeService.Current.ChangeAccent(Accent.Orange);
+                else ThemeService.Current.ChangeAccent(Accent.Blue);
                 OnPropertyChanged();
             }
         }
