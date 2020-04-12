@@ -43,11 +43,11 @@ namespace Ruminoid.Trimmer.Shell.Models
             {
                 Items = new ObservableCollection<LrcChar>()
                 {
-                    new LrcChar("你", new PlaybackPosition(0, 0, 0)),
-                    new LrcChar("好", new PlaybackPosition(0, 1, 0)),
-                    new LrcChar("，", new PlaybackPosition(0, 2, 0)),
-                    new LrcChar("世", new PlaybackPosition(0, 3, 0)),
-                    new LrcChar("界", new PlaybackPosition(0, 4, 0))
+                    new LrcChar("你", new Position(0, 0, 0)),
+                    new LrcChar("好", new Position(0, 1, 0)),
+                    new LrcChar("，", new Position(0, 2, 0)),
+                    new LrcChar("世", new Position(0, 3, 0)),
+                    new LrcChar("界", new Position(0, 4, 0))
                 }
             }
         };
@@ -119,7 +119,7 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         }
 
-        public LrcChar(string chr, PlaybackPosition position)
+        public LrcChar(string chr, Position position)
         {
             Char = chr;
             Position = position;
@@ -141,9 +141,9 @@ namespace Ruminoid.Trimmer.Shell.Models
             }
         }
 
-        private PlaybackPosition _position = new PlaybackPosition();
+        private Position _position = new Position();
 
-        public PlaybackPosition Position
+        public Position Position
         {
             get => _position;
             set

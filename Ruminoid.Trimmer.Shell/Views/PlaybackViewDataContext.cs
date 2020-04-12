@@ -27,7 +27,7 @@ namespace Ruminoid.Trimmer.Shell.Views
             }
         }
 
-        public PlaybackPosition Position { get; } = new PlaybackPosition();
+        public Position Position { get; } = new Position();
 
         private bool _playing;
 

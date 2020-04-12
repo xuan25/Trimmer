@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 
 namespace Ruminoid.Trimmer.Shell.Models
 {
-    public class PlaybackPosition: INotifyPropertyChanged
+    public class Position: INotifyPropertyChanged
     {
 
         #region Constructors
 
-        public PlaybackPosition()
+        public Position()
         {
 
         }
 
-        public PlaybackPosition(long time)
+        public Position(long time)
         {
             Time = time;
         }
 
-        public PlaybackPosition(int minute, int second, int timeCode)
+        public Position(int minute, int second, int timeCode)
         {
             Minute = minute;
             Second = second;
