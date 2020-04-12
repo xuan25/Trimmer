@@ -128,6 +128,12 @@
     <Compile Include="Views\LyricEditorView.xaml.cs">
       <DependentUpon>LyricEditorView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\LyricEditorViewCommandBinding.cs">
+      <DependentUpon>LyricEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LyricEditorViewDataContext.cs">
+      <DependentUpon>LyricEditorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PlaybackView.xaml.cs">
       <DependentUpon>PlaybackView.xaml</DependentUpon>
     </Compile>
