@@ -28,4 +28,35 @@ namespace Ruminoid.Trimmer.Shell.Models
 
     }
 
+    public abstract class ModifyTarget : Modify
+    {
+
+        private bool _isTargeting;
+
+        public bool IsTargeting
+        {
+            get => _isTargeting;
+            set
+            {
+                _isTargeting = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsTargeting)));
+            }
+        }
+
+        private bool _isCompleted;
+
+        public bool IsCompleted
+        {
+            get => _isCompleted;
+            set
+            {
+                _isCompleted = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsCompleted)));
+            }
+        }
+
+        public new event PropertyChangedEventHandler PropertyChanged;
+
+    }
+
 }
