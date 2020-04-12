@@ -45,7 +45,7 @@ namespace Ruminoid.Trimmer.Shell.Models
             {
                 _time = value;
                 ConvertToPosition();
-                OnPropertyChanged();
+                OnPositionPropertyChanged();
             }
         }
 
@@ -58,7 +58,7 @@ namespace Ruminoid.Trimmer.Shell.Models
             {
                 _total = value;
                 ConvertPercentage();
-                OnPropertyChanged();
+                OnPositionPropertyChanged();
             }
         }
 
@@ -71,7 +71,7 @@ namespace Ruminoid.Trimmer.Shell.Models
             {
                 _minute = value;
                 ConvertToTime();
-                OnPropertyChanged();
+                OnPositionPropertyChanged();
             }
         }
 
@@ -84,7 +84,7 @@ namespace Ruminoid.Trimmer.Shell.Models
             {
                 _second = value;
                 ConvertToTime();
-                OnPropertyChanged();
+                OnPositionPropertyChanged();
             }
         }
 
@@ -97,7 +97,7 @@ namespace Ruminoid.Trimmer.Shell.Models
             {
                 _timeCode = value;
                 ConvertToTime();
-                OnPropertyChanged();
+                OnPositionPropertyChanged();
             }
         }
 
@@ -149,19 +149,17 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         #region PropertyChanged
 
-        public new event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged()
+        protected virtual void OnPositionPropertyChanged()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Time)));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Total)));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Minute)));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Second)));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TimeCode)));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Percentage)));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MinuteDisplay)));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SecondDisplay)));
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TimeCodeDisplay)));
+            OnPropertyChanged(nameof(Time));
+            OnPropertyChanged(nameof(Total));
+            OnPropertyChanged(nameof(Minute));
+            OnPropertyChanged(nameof(Second));
+            OnPropertyChanged(nameof(TimeCode));
+            OnPropertyChanged(nameof(Percentage));
+            OnPropertyChanged(nameof(MinuteDisplay));
+            OnPropertyChanged(nameof(SecondDisplay));
+            OnPropertyChanged(nameof(TimeCodeDisplay));
             IsModified = true;
         }
 

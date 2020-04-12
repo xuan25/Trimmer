@@ -20,11 +20,16 @@ namespace Ruminoid.Trimmer.Shell.Models
             set
             {
                 _isModified = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsModified)));
+                OnPropertyChanged();
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
     }
 
@@ -39,7 +44,7 @@ namespace Ruminoid.Trimmer.Shell.Models
             set
             {
                 _isTargeting = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsTargeting)));
+                OnPropertyChanged();
             }
         }
 
@@ -51,11 +56,9 @@ namespace Ruminoid.Trimmer.Shell.Models
             set
             {
                 _isCompleted = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsCompleted)));
+                OnPropertyChanged();
             }
         }
-
-        public new event PropertyChangedEventHandler PropertyChanged;
 
     }
 
