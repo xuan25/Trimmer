@@ -185,6 +185,8 @@ namespace Ruminoid.Trimmer.Shell.Windows
 
         #endregion
 
+        #region Slider
+
         private Binding sliderBinding;
 
         private void Slider_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
@@ -205,5 +207,8 @@ namespace Ruminoid.Trimmer.Shell.Windows
             Wnd6.ValueChanged -= SliderOnValueChanged;
             Wnd6.SetBinding(RangeBase.ValueProperty, sliderBinding);
         }
+
+        #endregion
+
     }
 }
