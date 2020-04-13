@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -16,6 +17,9 @@ namespace Ruminoid.Trimmer.Shell.Models
         #region Current
 
         public static LrcModel Current { get; set; } = new LrcModel();
+
+        public string SkipData =
+            File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources\\SkipData.txt"));
 
         #endregion
 
@@ -70,7 +74,24 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         public void AddLyrics(string[] lyrics)
         {
+            foreach (string lyric in lyrics) AddLyric(lyric);
+        }
 
+        public void AddLyric(string lyric)
+        {
+            ObservableCollection<LrcChar> chars = new ObservableCollection<LrcChar>();
+            foreach (char c in lyric)
+            {
+                if (c == '\n' || c == '\0') continue;
+                LrcChar lc = new LrcChar(c);
+                foreach (char s in SkipData)
+                    if (c == s)
+                        lc.Skip = true;
+                chars.Add(lc);
+            }
+
+            chars.Add(new LrcChar(' ') {EndLine = true});
+            Items.Add(new LrcLine {Items = chars});
         }
 
         #endregion
@@ -139,12 +160,12 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         }
 
-        public LrcChar(string chr)
+        public LrcChar(char chr)
         {
             Char = chr;
         }
 
-        public LrcChar(string chr, Position position)
+        public LrcChar(char chr, Position position)
         {
             Char = chr;
             Position = position;
@@ -155,9 +176,9 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         #region DataContext
 
-        private string _char = "";
+        private char _char;
 
-        public string Char
+        public char Char
         {
             get => _char;
             set
