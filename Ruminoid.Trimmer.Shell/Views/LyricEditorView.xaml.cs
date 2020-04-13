@@ -24,8 +24,21 @@ namespace Ruminoid.Trimmer.Shell.Views
 
         public LyricEditorView()
         {
+
             InitializeComponent();
+
+            Loaded += OnLoaded;
+
         }
+
+        #region Loaded
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            AddCommandBindings();
+        }
+
+        #endregion
 
         #region Current
 
