@@ -105,10 +105,12 @@
                                                                     <Setter Property="Opacity" Value="1"/>
                                                                 </DataTrigger>
                                                                 <DataTrigger Binding="{Binding Skip}" Value="True">
-                                                                    <Setter Property="Background" Value="Teal"/>
+                                                                    <Setter Property="Background" Value="OrangeRed"/>
+                                                                    <Setter Property="Opacity" Value="0.3"/>
                                                                 </DataTrigger>
                                                                 <DataTrigger Binding="{Binding EndLine}" Value="True">
-                                                                    <Setter Property="Background" Value="DarkGreen"/>
+                                                                    <Setter Property="Background" Value="GreenYellow"/>
+                                                                    <Setter Property="Opacity" Value="0.3"/>
                                                                 </DataTrigger>
                                                             </Style.Triggers>
                                                         </Style>
