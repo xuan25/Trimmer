@@ -25,49 +25,7 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         #region Items
 
-        private ObservableCollection<LrcLine> _items = new ObservableCollection<LrcLine>()
-        {
-            new LrcLine()
-            {
-                Items = new ObservableCollection<LrcChar>()
-                {
-                    new LrcChar("你", new Position(0, 0, 0)) {IsCompleted = true},
-                    new LrcChar("好", new Position(0, 1, 0)) {IsCompleted = true},
-                    new LrcChar("，", new Position(0, 2, 0)) {IsCompleted = true},
-                    new LrcChar("世", new Position(0, 3, 0)) {IsCompleted = true},
-                    new LrcChar("界", new Position(0, 5, 0)) {IsCompleted = true},
-                    new LrcChar("！", new Position(0, 6, 0)) {IsCompleted = true},
-                    new LrcChar("！", new Position(0, 7, 0)) {IsCompleted = true},
-                    new LrcChar("！", new Position(0, 8, 0)) {IsCompleted = true},
-                    new LrcChar("！", new Position(0, 9, 0)) {IsCompleted = true},
-                    new LrcChar("！", new Position(0, 4, 0)) {IsCompleted = true},
-                    new LrcChar("！", new Position(0, 4, 0)) {IsCompleted = true},
-                    new LrcChar("！", new Position(0, 4, 0)) {IsCompleted = true},
-                    new LrcChar("！", new Position(0, 4, 0)) {IsCompleted = true},
-                    new LrcChar("！", new Position(0, 4, 0)) {IsCompleted = true},
-                    new LrcChar("！", new Position(0, 4, 0)) {IsCompleted = true},
-                    new LrcChar("！", new Position(0, 4, 0)) {IsCompleted = true},
-                    new LrcChar("！", new Position(0, 4, 0)) {IsCompleted = true},
-                    new LrcChar("！", new Position(0, 4, 0)) {IsCompleted = true},
-                    new LrcChar("！", new Position(0, 4, 0)) {IsCompleted = true},
-                    new LrcChar("！", new Position(0, 4, 0)) {IsCompleted = true}
-                },
-                IsCompleted = true,
-                IsModified = true
-            },
-            new LrcLine()
-            {
-                Items = new ObservableCollection<LrcChar>()
-                {
-                    new LrcChar("再", new Position(1, 12, 0)) {IsCompleted = true},
-                    new LrcChar("见", new Position()) {IsTargeting = true},
-                    new LrcChar("，", new Position()),
-                    new LrcChar("世", new Position()),
-                    new LrcChar("界", new Position())
-                },
-                IsModified = true
-            }
-        };
+        private ObservableCollection<LrcLine> _items = new ObservableCollection<LrcLine>();
 
         public ObservableCollection<LrcLine> Items
         {
@@ -87,6 +45,20 @@ namespace Ruminoid.Trimmer.Shell.Models
         {
             OnPropertyChanged(propertyName);
             IsModified = true;
+        }
+
+        #endregion
+
+        #region ItemOperations
+
+        public void AddLyrics(string lyrics)
+        {
+            AddLyrics(lyrics.Split('\n'));
+        }
+
+        public void AddLyrics(string[] lyrics)
+        {
+
         }
 
         #endregion
