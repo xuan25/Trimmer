@@ -24,22 +24,6 @@ namespace Ruminoid.Trimmer.Shell.Views
 
             InitializeComponent();
 
-            Loaded += OnLoaded;
-
-        }
-
-        #region VLC
-
-        private LibVLC _libVLC;
-        public MediaPlayer MediaPlayer;
-
-        #endregion
-
-        #region Loaded
-
-        private void OnLoaded(object sender, RoutedEventArgs e)
-        {
-
             Core.Initialize();
             _libVLC = new LibVLC();
             MediaPlayer = new MediaPlayer(_libVLC);
@@ -50,6 +34,11 @@ namespace Ruminoid.Trimmer.Shell.Views
             AddCommandBindings();
 
         }
+
+        #region VLC
+
+        private LibVLC _libVLC;
+        public MediaPlayer MediaPlayer;
 
         #endregion
 
