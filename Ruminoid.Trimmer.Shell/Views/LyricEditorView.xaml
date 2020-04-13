@@ -92,15 +92,21 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                                <Grid Background="White"
-                                                  Width="2" Height="20"
-                                                  Margin="4,18,3,0">
+                                                <Grid Width="2" Height="20"
+                                                      Margin="4,18,3,0">
                                                     <Grid.Style>
                                                         <Style TargetType="Grid">
                                                             <Setter Property="Opacity" Value="0.1"/>
+                                                            <Setter Property="Background" Value="White"/>
                                                             <Style.Triggers>
                                                                 <DataTrigger Binding="{Binding IsTargeting}" Value="True">
-                                                                    <Setter Property="Opacity" Value="1"></Setter>
+                                                                    <Setter Property="Opacity" Value="1"/>
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Skip}" Value="True">
+                                                                    <Setter Property="Background" Value="Teal"/>
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding EndLine}" Value="True">
+                                                                    <Setter Property="Background" Value="DarkGreen"/>
                                                                 </DataTrigger>
                                                             </Style.Triggers>
                                                         </Style>

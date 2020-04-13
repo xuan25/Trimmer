@@ -183,6 +183,30 @@ namespace Ruminoid.Trimmer.Shell.Models
             }
         }
 
+        private bool _endLine;
+
+        public bool EndLine
+        {
+            get => _endLine;
+            set
+            {
+                _endLine = value;
+                OnLrcCharPropertyChanged();
+            }
+        }
+
+        private bool _skip;
+
+        public bool Skip
+        {
+            get => _skip;
+            set
+            {
+                _skip = value;
+                OnLrcCharPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region PropertyChanged
