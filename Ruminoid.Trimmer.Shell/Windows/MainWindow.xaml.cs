@@ -111,7 +111,7 @@ namespace Ruminoid.Trimmer.Shell.Windows
             {
                 Margin = new Thickness(12, 8, 12, 8),
                 HorizontalAlignment = HorizontalAlignment.Left,
-                Content = "不要再询问我。"
+                Content = "不要再提醒。"
             };
             welcomeBox.Checked += (o, args) => ConfigHelper.Current.HideWelcome = true;
             welcomeBox.Unchecked += (o, args) => ConfigHelper.Current.HideWelcome = false;
