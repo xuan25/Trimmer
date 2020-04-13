@@ -73,7 +73,6 @@
                         <MenuItem Command="Find" Foreground="#FF212121"/>
                         <MenuItem Command="Replace" Foreground="#FF212121"/>-->
                         <MenuItem Command="{x:Static commands:UICommands.AddLyrics}" Foreground="#FF212121"/>
-                        <MenuItem Command="{x:Static commands:UICommands.EditCurrentLine}" Foreground="#FF212121"/>
                     </MenuItem>
                     <MenuItem Header="视图(_V)">
                         <MenuItem Command="{x:Static commands:UICommands.ShowLyricsEditorView}" Foreground="#FF212121"/>
@@ -133,9 +132,6 @@
                     <ToolBar Background="{x:Null}" Loaded="ToolBar_RemoveGrid">
                         <Button Command="{x:Static commands:UICommands.AddLyrics}" Margin="3" ToolTip="加载歌词... (Ctrl+T)">
                             <visualIcon:Icon Type="AddComment" Margin="3"/>
-                        </Button>
-                        <Button Command="{x:Static commands:UICommands.EditCurrentLine}" Margin="3" ToolTip="编辑当前行... (Ctrl+空格)">
-                            <visualIcon:Icon Type="EditConversation" Margin="3"/>
                         </Button>
                     </ToolBar>
                     <ToolBar Background="{x:Null}" Loaded="ToolBar_RemoveGrid">

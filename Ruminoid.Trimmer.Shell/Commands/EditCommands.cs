@@ -20,15 +20,5 @@ namespace Ruminoid.Trimmer.Shell.Commands
                 new KeyGesture(Key.F5, ModifierKeys.None, "F5")
             }));
 
-        public static RoutedUICommand EditCurrentLine { get; } = new RoutedUICommand(
-            "编辑当前行(_E)...",
-            "EditCurrentLine",
-            typeof(UICommands),
-            new InputGestureCollection(new List<InputGesture>
-            {
-                new KeyGesture(Key.Space, ModifierKeys.Control, "Ctrl+空格"),
-                new KeyGesture(Key.F6, ModifierKeys.None, "F6")
-            }));
-
     }
 }
