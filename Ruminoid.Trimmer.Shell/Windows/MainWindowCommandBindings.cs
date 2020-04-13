@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Ruminoid.Trimmer.Shell.Commands;
 using Ruminoid.Trimmer.Shell.Models;
@@ -131,6 +132,44 @@ namespace Ruminoid.Trimmer.Shell.Windows
         private void MainWindow_OnPreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (!IsHandling) return;
+            if (
+                e.Key == Key.Space ||
+                e.Key == Key.Left ||
+                e.Key == Key.Right ||
+                e.Key == Key.Up ||
+                e.Key == Key.Down) e.Handled = true;
+            TriggerKeyPress(e.Key);
+        }
+
+        private void WwControl_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!IsHandling) return;
+            Button s = sender as Button;
+            switch (s?.Tag)
+            {
+                case "Left":
+                    TriggerKeyPress(Key.Left);
+                    break;
+                case "Right":
+                    TriggerKeyPress(Key.Right);
+                    break;
+                case "Up":
+                    TriggerKeyPress(Key.Up);
+                    break;
+                case "Down":
+                    TriggerKeyPress(Key.Down);
+                    break;
+            }
+        }
+
+        private void TriggerKeyPress(Key key)
+        {
+            switch (key)
+            {
+                case Key.Space:
+                    if (PlaybackView.Current.MediaLoaded) PlaybackView.Current.Playing = !PlaybackView.Current.Playing;
+                    break;
+            }
         }
 
         #endregion

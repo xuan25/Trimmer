@@ -164,13 +164,16 @@
                     <Button
                         Name="WwUp" Grid.Column="1"
                         Padding="0"
-                        ToolTip="撤销 (上箭头)">
+                        ToolTip="撤销 (上箭头)"
+                        Tag="Up"
+                        Click="WwControl_OnClick">
                         <visualIcon:Icon Type="Undo"/>
                     </Button>
                     <Button
                         Name="WwLeft" Grid.Row="1" Grid.Column="0"
                         Padding="0"
-                        ToolTip="快退 (左箭头)">
+                        ToolTip="快退 (左箭头)"
+                        Tag="Left">
                         <visualIcon:Icon Type="Previous"/>
                     </Button>
                     <ToggleButton
@@ -184,13 +187,15 @@
                     <Button
                         Name="WwRight" Grid.Row="1" Grid.Column="2"
                         Padding="0"
-                        ToolTip="快进 (右箭头)">
+                        ToolTip="快进 (右箭头)"
+                        Tag="Right">
                         <visualIcon:Icon Type="Next"/>
                     </Button>
                     <Button
                         Name="WwDown" Grid.Row="2" Grid.Column="1"
                         Padding="0"
-                        ToolTip="应用时间 (下箭头)">
+                        ToolTip="应用时间 (下箭头)"
+                        Tag="Down">
                         <visualIcon:Icon Type="ApplyCodeChanges"/>
                     </Button>
                 </Grid>
