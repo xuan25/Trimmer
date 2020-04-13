@@ -138,7 +138,42 @@ namespace Ruminoid.Trimmer.Shell.Windows
                 e.Key == Key.Right ||
                 e.Key == Key.Up ||
                 e.Key == Key.Down) e.Handled = true;
+            switch (e.Key)
+            {
+                case Key.Left:
+                    IsLeftPressed = true;
+                    break;
+                case Key.Right:
+                    IsRightPressed = true;
+                    break;
+                case Key.Up:
+                    IsUpPressed = true;
+                    break;
+                case Key.Down:
+                    IsDownPressed = true;
+                    break;
+            }
             TriggerKeyPress(e.Key);
+        }
+
+        private void MainWindow_OnPreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            if (!IsHandling) return;
+            switch (e.Key)
+            {
+                case Key.Left:
+                    IsLeftPressed = false;
+                    break;
+                case Key.Right:
+                    IsRightPressed = false;
+                    break;
+                case Key.Up:
+                    IsUpPressed = false;
+                    break;
+                case Key.Down:
+                    IsDownPressed = false;
+                    break;
+            }
         }
 
         private void WwControl_OnClick(object sender, RoutedEventArgs e)
@@ -184,6 +219,54 @@ namespace Ruminoid.Trimmer.Shell.Windows
             set
             {
                 _isHandling = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isLeftPressed;
+
+        public bool IsLeftPressed
+        {
+            get => _isLeftPressed;
+            set
+            {
+                _isLeftPressed = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isRightPressed;
+
+        public bool IsRightPressed
+        {
+            get => _isRightPressed;
+            set
+            {
+                _isRightPressed = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isUpPressed;
+
+        public bool IsUpPressed
+        {
+            get => _isUpPressed;
+            set
+            {
+                _isUpPressed = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isDownPressed;
+
+        public bool IsDownPressed
+        {
+            get => _isDownPressed;
+            set
+            {
+                _isDownPressed = value;
                 OnPropertyChanged();
             }
         }
