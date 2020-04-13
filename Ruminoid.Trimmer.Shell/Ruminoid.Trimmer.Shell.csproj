@@ -122,6 +122,9 @@
     <Compile Include="Commands\MainCommands.cs" />
     <Compile Include="Commands\PlaybackCommands.cs" />
     <Compile Include="Commands\ViewCommands.cs" />
+    <Compile Include="Dialogs\EditLineDialog.xaml.cs">
+      <DependentUpon>EditLineDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\ConfigHelper.cs" />
     <Compile Include="Models\LrcModel.cs" />
     <Compile Include="Models\Modify.cs" />
@@ -216,6 +219,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Dialogs\EditLineDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
