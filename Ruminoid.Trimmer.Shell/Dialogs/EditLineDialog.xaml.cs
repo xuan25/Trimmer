@@ -54,7 +54,7 @@ namespace Ruminoid.Trimmer.Shell.Dialogs
 
         public static EditLineDialog Current { get; set; } = new EditLineDialog();
 
-        public static string Data { get; set; };
+        public static string Data { get; set; }
 
         #endregion
 
