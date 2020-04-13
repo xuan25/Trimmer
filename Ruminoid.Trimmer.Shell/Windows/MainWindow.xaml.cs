@@ -121,7 +121,10 @@ namespace Ruminoid.Trimmer.Shell.Windows
                 .Accent("#007ACC")
                 .Background("#333")
                 .HasMessage("欢迎回来！点击“添加歌词”或轻敲 Ctrl+T 以开始。")
-                .Dismiss().WithButton("添加歌词", button => { })
+                .Dismiss().WithButton("添加歌词", button =>
+                {
+                    LyricEditorView.Current.AddLyrics_Executed(null, null);
+                })
                 .Dismiss().WithButton("消除", button => { })
                 .WithAdditionalContent(ContentLocation.Bottom,
                     new Border

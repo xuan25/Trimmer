@@ -22,7 +22,7 @@ namespace Ruminoid.Trimmer.Shell.Views
                 CanExecute));
         }
 
-        private void AddLyrics_Executed(object sender, ExecutedRoutedEventArgs e)
+        public void AddLyrics_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             EditLineDialog.ShowAddDialog();
             LrcModel.Current.AddLyrics(EditLineDialog.Data);
