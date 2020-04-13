@@ -25,15 +25,6 @@ namespace Ruminoid.Trimmer.Shell.Views
                 CanExecute));
 
             Application.Current.MainWindow?.CommandBindings.Add(new CommandBinding(
-                UICommands.Playback,
-                Command_Playback,
-                (sender, args) =>
-                {
-                    args.CanExecute = MediaLoaded;
-                    args.Handled = true;
-                }));
-
-            Application.Current.MainWindow?.CommandBindings.Add(new CommandBinding(
                 UICommands.UnloadMedia,
                 Command_UnloadMedia,
                 (sender, args) =>
@@ -67,11 +58,6 @@ namespace Ruminoid.Trimmer.Shell.Views
             MediaLoaded = true;
             Playing = true;
             MediaPlayer.Play(new Media(_libVLC, fileDialog.FileName));
-        }
-
-        private void Command_Playback(object sender, ExecutedRoutedEventArgs e)
-        {
-            if (MediaLoaded) Playing = !Playing;
         }
 
         private void Command_UnloadMedia(object sender, ExecutedRoutedEventArgs e)

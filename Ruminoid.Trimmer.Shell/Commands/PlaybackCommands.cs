@@ -20,15 +20,6 @@ namespace Ruminoid.Trimmer.Shell.Commands
                 new KeyGesture(Key.F7, ModifierKeys.None, "F7")
             }));
 
-        public static RoutedUICommand Playback { get; } = new RoutedUICommand(
-            "播放/暂停(_P)",
-            "Playback",
-            typeof(UICommands),
-            new InputGestureCollection(new List<InputGesture>
-            {
-                new KeyGesture(Key.Space, ModifierKeys.None, "空格")
-            }));
-
         public static RoutedUICommand UnloadMedia { get; } = new RoutedUICommand(
             "卸载媒体(_U)",
             "UnloadMedia",
