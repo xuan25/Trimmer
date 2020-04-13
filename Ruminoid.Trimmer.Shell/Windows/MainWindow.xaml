@@ -23,7 +23,8 @@
         Title="Trimmer"
         MinHeight="720" MinWidth="1280" WindowStartupLocation="CenterScreen" 
         Icon="/Ruminoid.Trimmer.Shell;component/Assets/logo_v1.ico"
-        Name="RootElement">
+        Name="RootElement"
+        PreviewKeyDown="MainWindow_OnPreviewKeyDown">
 
     <chrome:WindowChrome.Instance>
         <chrome:WindowChrome>
@@ -150,26 +151,68 @@
 
             <StackPanel Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal" Name="WndCaption"
                         DataContext="{x:Static views:PlaybackView.Current}">
-                <Border BorderBrush="{DynamicResource BorderBrushKey}" BorderThickness="0,1,0,0">
-                    <Grid Background="{DynamicResource BackgroundBrushKey}" Width="181">
-                        <StackPanel Margin="6,0" VerticalAlignment="Center" Orientation="Horizontal">
-                            <StackPanel Margin="6,0" VerticalAlignment="Center">
-                                <TextBlock Text="{Binding Position.MinuteDisplay}" FontSize="36" HorizontalAlignment="Center"/>
-                                <TextBlock Foreground="{DynamicResource BorderBrushKey}" Text="M" HorizontalAlignment="Center"/>
-                            </StackPanel>
-                            <TextBlock Text=":" FontSize="36" VerticalAlignment="Center" Margin="0,0,0,20"/>
-                            <StackPanel Margin="6,0" VerticalAlignment="Center">
-                                <TextBlock Text="{Binding Position.SecondDisplay}" FontSize="36" HorizontalAlignment="Center"/>
-                                <TextBlock Foreground="{DynamicResource BorderBrushKey}" Text="S" HorizontalAlignment="Center"/>
-                            </StackPanel>
-                            <TextBlock Text="." FontSize="36" VerticalAlignment="Center" Margin="0,0,0,20"/>
-                            <StackPanel Margin="6,0" VerticalAlignment="Center">
-                                <TextBlock Text="{Binding Position.TimeCodeDisplay}" FontSize="36" HorizontalAlignment="Center"/>
-                                <TextBlock Foreground="{DynamicResource BorderBrushKey}" Text="Code" HorizontalAlignment="Center"/>
-                            </StackPanel>
+                <Grid Background="{DynamicResource BackgroundBrushKey}" Width="80" Height="80">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button
+                        Name="WwUp" Grid.Column="1"
+                        Padding="0"
+                        ToolTip="撤销 (上箭头)">
+                        <visualIcon:Icon Type="Undo"/>
+                    </Button>
+                    <Button
+                        Name="WwLeft" Grid.Row="1" Grid.Column="0"
+                        Padding="0"
+                        ToolTip="快退 (左箭头)">
+                        <visualIcon:Icon Type="Previous"/>
+                    </Button>
+                    <ToggleButton
+                        Name="WwMiddle" Grid.Row="1" Grid.Column="1"
+                        BorderBrush="{x:Null}"
+                        IsChecked="{Binding ElementName=RootElement, Path=IsHandling}"
+                        Padding="0"
+                        ToolTip="捕捉">
+                        <visualIcon:Icon Type="Lock"/>
+                    </ToggleButton>
+                    <Button
+                        Name="WwRight" Grid.Row="1" Grid.Column="2"
+                        Padding="0"
+                        ToolTip="快进 (右箭头)">
+                        <visualIcon:Icon Type="Next"/>
+                    </Button>
+                    <Button
+                        Name="WwDown" Grid.Row="2" Grid.Column="1"
+                        Padding="0"
+                        ToolTip="应用时间 (下箭头)">
+                        <visualIcon:Icon Type="ApplyCodeChanges"/>
+                    </Button>
+                </Grid>
+                <Grid Background="{DynamicResource BackgroundBrushKey}" Width="181">
+                    <StackPanel Margin="6,0" VerticalAlignment="Center" Orientation="Horizontal">
+                        <StackPanel Margin="6,0" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Position.MinuteDisplay}" FontSize="36" HorizontalAlignment="Center"/>
+                            <TextBlock Foreground="{DynamicResource BorderBrushKey}" Text="M" HorizontalAlignment="Center"/>
                         </StackPanel>
-                    </Grid>
-                </Border>
+                        <TextBlock Text=":" FontSize="36" VerticalAlignment="Center" Margin="0,0,0,20"/>
+                        <StackPanel Margin="6,0" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Position.SecondDisplay}" FontSize="36" HorizontalAlignment="Center"/>
+                            <TextBlock Foreground="{DynamicResource BorderBrushKey}" Text="S" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                        <TextBlock Text="." FontSize="36" VerticalAlignment="Center" Margin="0,0,0,20"/>
+                        <StackPanel Margin="6,0" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Position.TimeCodeDisplay}" FontSize="36" HorizontalAlignment="Center"/>
+                            <TextBlock Foreground="{DynamicResource BorderBrushKey}" Text="Code" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
                 <ToggleButton HorizontalAlignment="Right" VerticalAlignment="Bottom"
                         Height="80" Width="80" Padding="0" Name="Wnd4"
                         IsEnabled="{Binding MediaLoaded}" IsChecked="{Binding Playing}">

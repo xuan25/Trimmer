@@ -81,7 +81,8 @@ namespace Ruminoid.Trimmer.Shell.Windows
         {
             IntPtr hwnd = new WindowInteropHelper(this).Handle;
             HwndSource.FromHwnd(hwnd).AddHook(WndProc);
-            wndList = new List<FrameworkElement>() { Wnd1, Wnd2, Wnd3, Wnd4, Wnd5, Wnd6 };
+            wndList = new List<FrameworkElement>
+                {Wnd1, Wnd2, Wnd3, Wnd4, Wnd5, Wnd6, WwUp, WwMiddle, WwLeft, WwRight, WwDown};
 
             PlaybackView.Current.DockControl.Show();
             if (File.Exists(SettingFileName))

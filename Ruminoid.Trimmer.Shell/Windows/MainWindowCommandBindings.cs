@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,7 +14,7 @@ using Squirrel;
 
 namespace Ruminoid.Trimmer.Shell.Windows
 {
-    public partial class MainWindow
+    public partial class MainWindow : INotifyPropertyChanged
     {
 
         private bool _updating;
@@ -123,6 +125,42 @@ namespace Ruminoid.Trimmer.Shell.Windows
             e.CanExecute = true;
             e.Handled = true;
         }
+
+        #region KeyDown
+
+        private void MainWindow_OnPreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (!IsHandling) return;
+        }
+
+        #endregion
+
+        #region DataContext
+
+        private bool _isHandling = true;
+
+        public bool IsHandling
+        {
+            get => _isHandling;
+            set
+            {
+                _isHandling = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region PropertyChanged
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
 
     }
 }
