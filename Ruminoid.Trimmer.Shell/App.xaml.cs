@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace Ruminoid.Trimmer.Shell
             DispatcherUnhandledException += (sender, args) =>
             {
                 args.Handled = true;
+                if (args.Exception.Source.Contains("VLC") || args.Exception.Message.Contains("VideoView")) return;
                 MessageBox.Show(
                     args.Exception.Message,
                     "灾难性故障",
@@ -35,8 +37,10 @@ namespace Ruminoid.Trimmer.Shell
 
             AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
             {
+                if (((Exception) args.ExceptionObject).Source.Contains("VLC") ||
+                    ((Exception) args.ExceptionObject).Message.Contains("VideoView")) return;
                 MessageBox.Show(
-                    (args.ExceptionObject as Exception)?.Message ?? "Exception",
+                    ((Exception) args.ExceptionObject)?.Message ?? "Exception",
                     "灾难性故障",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error,

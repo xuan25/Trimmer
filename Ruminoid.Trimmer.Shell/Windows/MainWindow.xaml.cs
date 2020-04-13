@@ -83,6 +83,7 @@ namespace Ruminoid.Trimmer.Shell.Windows
             HwndSource.FromHwnd(hwnd).AddHook(WndProc);
             wndList = new List<FrameworkElement>() { Wnd1, Wnd2, Wnd3, Wnd4, Wnd5, Wnd6 };
 
+            PlaybackView.Current.DockControl.Show();
             if (File.Exists(SettingFileName))
             {
                 XDocument layout = XDocument.Parse(File.ReadAllText(SettingFileName));
