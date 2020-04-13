@@ -37,6 +37,18 @@ namespace Ruminoid.Trimmer.Shell.Models
             }
         }
 
+        private LrcLine _selectedItem;
+
+        public LrcLine SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                _selectedItem = value;
+                OnLrcModelPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region PropertyChanged
@@ -87,6 +99,18 @@ namespace Ruminoid.Trimmer.Shell.Models
             set
             {
                 _items = value;
+                OnLrcLinePropertyChanged();
+            }
+        }
+
+        private LrcChar _selectedItem;
+
+        public LrcChar SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                _selectedItem = value;
                 OnLrcLinePropertyChanged();
             }
         }
