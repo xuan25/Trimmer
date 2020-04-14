@@ -54,7 +54,7 @@
         <ListView  Background="{x:Null}" Foreground="White" Name="RootView"
                   DataContext="{x:Static models:LrcModel.Current}"
                   ItemsSource="{Binding Items}"
-                  SelectedItem="{Binding SelectedItem}"
+                  SelectedIndex="{Binding SelectedIndex}"
                   SelectionMode="Single"
                   HorizontalContentAlignment="Stretch"
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled">
@@ -74,7 +74,7 @@
                             <Grid>
                                 <ListView Background="#55000000"
                                        ItemsSource="{Binding Items}"
-                                       SelectedItem="{Binding SelectedItem}"
+                                       SelectedIndex="{Binding SelectedIndex}"
                                        SelectionMode="Single"
                                        BorderBrush="{x:Null}"
                                        ScrollViewer.HorizontalScrollBarVisibility="Auto"
