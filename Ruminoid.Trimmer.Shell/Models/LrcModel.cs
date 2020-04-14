@@ -18,7 +18,7 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         public static LrcModel Current { get; set; } = new LrcModel();
 
-        public string SkipData =
+        public static readonly string SkipData =
             File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources\\SkipData.txt"));
 
         #endregion
@@ -91,20 +91,9 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         public void AddLyric(string lyric)
         {
-            ObservableCollection<LrcChar> chars = new ObservableCollection<LrcChar>();
-            foreach (char c in lyric)
-            {
-                if (c == '\r' || c == '\n' || c == '\0') continue;
-                LrcChar lc = new LrcChar(c);
-                foreach (char s in SkipData)
-                    if (c == s)
-                        lc.Skip = true;
-                chars.Add(lc);
-            }
-
-            if (chars.Count == 0) return;
-            chars.Add(new LrcChar(' ') {EndLine = true});
-            Items.Add(new LrcLine {Items = chars});
+            LrcLine line = new LrcLine(lyric);
+            if (line.Items.Count == 0) return;
+            Items.Add(line);
         }
 
         #endregion
@@ -134,6 +123,8 @@ namespace Ruminoid.Trimmer.Shell.Models
         {
 
         }
+
+        public LrcLine(string lyric) => ResetData(lyric);
 
         #endregion
 
@@ -176,6 +167,23 @@ namespace Ruminoid.Trimmer.Shell.Models
         }
 
         #endregion
+
+        public void ResetData(string lyric)
+        {
+            if (Items is null) Items = new ObservableCollection<LrcChar>();
+            else Items.Clear();
+            foreach (char c in lyric)
+            {
+                if (c == '\r' || c == '\n' || c == '\0') continue;
+                LrcChar lc = new LrcChar(c);
+                foreach (char s in LrcModel.SkipData)
+                    if (c == s)
+                        lc.Skip = true;
+                Items.Add(lc);
+            }
+
+            Items.Add(new LrcChar(' ') { EndLine = true });
+        }
 
         #region PropertyChanged
 
