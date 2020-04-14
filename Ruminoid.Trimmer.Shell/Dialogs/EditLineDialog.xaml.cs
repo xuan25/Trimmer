@@ -49,10 +49,11 @@ namespace Ruminoid.Trimmer.Shell.Dialogs
             Current.ShowDialog();
         }
 
-        public static void ShowEditDialog()
+        public static void ShowEditDialog(string origin = "")
         {
             CheckDialog();
             Current.IsAddMode = false;
+            Current.InputBox.Text = origin;
             Current.ShowDialog();
         }
 
@@ -67,7 +68,14 @@ namespace Ruminoid.Trimmer.Shell.Dialogs
 
         public static EditLineDialog Current { get; set; } = new EditLineDialog();
 
-        public static string Data { get; set; }
+        private static string _data;
+
+        public static string GetData()
+        {
+            string data = _data;
+            _data = null;
+            return data;
+        }
 
         #endregion
 
@@ -101,7 +109,7 @@ namespace Ruminoid.Trimmer.Shell.Dialogs
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             Button s = sender as Button;
-            if (s?.Tag != null && s.Tag.ToString() == "Apply") Data = InputBox.Text;
+            if (s?.Tag != null && s.Tag.ToString() == "Apply") _data = InputBox.Text;
             Close();
         }
 
@@ -115,13 +123,13 @@ namespace Ruminoid.Trimmer.Shell.Dialogs
             if (e.Key != Key.Enter) return;
             if (!IsAddMode)
             {
-                Data = InputBox.Text;
+                _data = InputBox.Text;
                 e.Handled = true;
                 Close();
                 return;
             }
             if ((Keyboard.Modifiers & ModifierKeys.Control) != ModifierKeys.Control) return;
-            Data = InputBox.Text;
+            _data = InputBox.Text;
             e.Handled = true;
             Close();
         }

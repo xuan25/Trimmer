@@ -92,7 +92,7 @@ namespace Ruminoid.Trimmer.Shell.Models
         public void AddLyric(string lyric)
         {
             LrcLine line = new LrcLine(lyric);
-            if (line.Items.Count == 0) return;
+            if (line.Items.Count <= 1) return;
             Items.Add(line);
         }
 
@@ -121,7 +121,7 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         public LrcLine()
         {
-
+            Origin = "";
         }
 
         public LrcLine(string lyric) => ResetData(lyric);
@@ -168,8 +168,11 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         #endregion
 
+        public string Origin { get; set; }
+
         public void ResetData(string lyric)
         {
+            Origin = lyric.Replace("\r", "").Replace("\n", "");
             if (Items is null) Items = new ObservableCollection<LrcChar>();
             else Items.Clear();
             foreach (char c in lyric)

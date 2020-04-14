@@ -26,7 +26,9 @@ namespace Ruminoid.Trimmer.Shell.Views
         public void AddLyrics_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             EditLineDialog.ShowAddDialog();
-            if (!string.IsNullOrEmpty(EditLineDialog.Data)) LrcModel.Current.AddLyrics(EditLineDialog.Data);
+            string data = EditLineDialog.GetData();
+            if (string.IsNullOrEmpty(data)) return;
+            LrcModel.Current.AddLyrics(data);
         }
 
         private void CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -43,12 +45,13 @@ namespace Ruminoid.Trimmer.Shell.Views
 
         private void EditLineButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            EditLineDialog.ShowEditDialog();
-            if (string.IsNullOrEmpty(EditLineDialog.Data)) return;
             Button s = sender as Button;
             if (s is null) return;
             LrcLine line = s.DataContext as LrcLine;
-            line?.ResetData(EditLineDialog.Data);
+            EditLineDialog.ShowEditDialog((line?.Origin ?? "").Replace("\r", "").Replace("\n", ""));
+            string data = EditLineDialog.GetData();
+            if (string.IsNullOrEmpty(data)) return;
+            line?.ResetData(data);
         }
 
         private void DeleteLineButtonBase_OnClick(object sender, RoutedEventArgs e)
