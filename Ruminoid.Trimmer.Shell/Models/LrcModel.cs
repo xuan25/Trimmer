@@ -90,6 +90,7 @@ namespace Ruminoid.Trimmer.Shell.Models
                 chars.Add(lc);
             }
 
+            if (chars.Count == 0) return;
             chars.Add(new LrcChar(' ') {EndLine = true});
             Items.Add(new LrcLine {Items = chars});
         }
