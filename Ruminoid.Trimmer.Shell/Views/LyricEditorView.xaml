@@ -140,12 +140,18 @@
                                                         <TextBlock Style="{StaticResource TcText}" Text="."/>
                                                         <TextBlock Style="{StaticResource TcText}" Text="{Binding Position.TimeCodeDisplay, Mode=OneWay}"/>
                                                     </StackPanel>
-                                                    <TextBlock Text="{Binding Char}"
-                                                           FontSize="36" FontWeight="Bold">
+                                                    <TextBlock Text="{Binding Char}">
                                                         <TextBlock.Style>
                                                             <Style TargetType="TextBlock">
                                                                 <Setter Property="Foreground" Value="#55FFFFFF"/>
+                                                                <Setter Property="FontSize" Value="36"/>
+                                                                <Setter Property="FontWeight" Value="Bold"/>
                                                                 <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding Skip}" Value="True">
+                                                                        <Setter Property="FontSize" Value="24"/>
+                                                                        <Setter Property="FontWeight" Value="Normal"/>
+                                                                        <Setter Property="Foreground" Value="#22FFFFFF"/>
+                                                                    </DataTrigger>
                                                                     <DataTrigger Binding="{Binding IsCompleted}" Value="True">
                                                                         <Setter Property="Foreground" Value="Green"/>
                                                                     </DataTrigger>
