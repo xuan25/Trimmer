@@ -81,6 +81,7 @@ namespace Ruminoid.Trimmer.Shell.Models
                 ClearTargeting?.Invoke();
                 OnLrcModelPropertyChanged();
                 (LrcChar c, LrcLine l) = GetCharAndLine(_globalIndex);
+                if (c is null || l is null) return;
                 c.IsTargeting = true;
                 l.IsTargeting = true;
             }
