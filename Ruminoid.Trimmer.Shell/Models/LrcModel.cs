@@ -12,7 +12,7 @@ using MS.WindowsAPICodePack.Internal;
 namespace Ruminoid.Trimmer.Shell.Models
 {
 
-    public sealed class LrcModel : Modify
+    public sealed partial class LrcModel : Modify
     {
 
         #region Current

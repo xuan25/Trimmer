@@ -126,6 +126,7 @@
       <DependentUpon>EditLineDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ConfigHelper.cs" />
+    <Compile Include="Models\Export.cs" />
     <Compile Include="Models\LrcModel.cs" />
     <Compile Include="Models\Modify.cs" />
     <Compile Include="Models\Position.cs" />
