@@ -82,7 +82,7 @@ namespace Ruminoid.Trimmer.Shell.Models
             ObservableCollection<LrcChar> chars = new ObservableCollection<LrcChar>();
             foreach (char c in lyric)
             {
-                if (c == '\n' || c == '\0') continue;
+                if (c == '\r' || c == '\n' || c == '\0') continue;
                 LrcChar lc = new LrcChar(c);
                 foreach (char s in SkipData)
                     if (c == s)
