@@ -97,6 +97,15 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         #endregion
 
+        #region Operations
+
+        public void Apply(Position position)
+        {
+
+        }
+
+        #endregion
+
     }
 
     public sealed class LrcLine : ModifyTarget

@@ -34,5 +34,19 @@ namespace Ruminoid.Trimmer.Shell.Views
             e.Handled = true;
         }
 
+        #region Operations
+
+        public void Apply()
+        {
+
+        }
+
+        public void Undo()
+        {
+
+        }
+
+        #endregion
+
     }
 }

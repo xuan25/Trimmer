@@ -204,6 +204,20 @@ namespace Ruminoid.Trimmer.Shell.Windows
                 case Key.Space:
                     if (PlaybackView.Current.MediaLoaded) PlaybackView.Current.Playing = !PlaybackView.Current.Playing;
                     break;
+                case Key.Down:
+                    LyricEditorView.Current.Apply();
+                    break;
+                case Key.Up:
+                    LyricEditorView.Current.Undo();
+                    break;
+                case Key.Left:
+                    PlaybackView.Current.MediaPlayer.Time -= 1000;
+                    PlaybackView.Current.Position.Time = PlaybackView.Current.MediaPlayer.Time;
+                    break;
+                case Key.Right:
+                    PlaybackView.Current.MediaPlayer.Time += 1000;
+                    PlaybackView.Current.Position.Time = PlaybackView.Current.MediaPlayer.Time;
+                    break;
             }
         }
 
