@@ -170,10 +170,10 @@
                             </Grid>
                             <Grid Grid.Column="1">
                                 <StackPanel Margin="3" VerticalAlignment="Center">
-                                    <Button Margin="3" ToolTip="编辑行...">
+                                    <Button Margin="3" ToolTip="编辑行..." Click="EditLineButtonBase_OnClick">
                                         <visualIcon:Icon Type="Edit" Margin="3"/>
                                     </Button>
-                                    <Button Margin="3" ToolTip="删除行">
+                                    <Button Margin="3" ToolTip="删除行" Click="DeleteLineButtonBase_OnClick">
                                         <visualIcon:Icon Type="Close" Margin="3"/>
                                     </Button>
                                 </StackPanel>
