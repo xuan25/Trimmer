@@ -98,19 +98,18 @@
                                                       Margin="4,18,3,0">
                                                     <Grid.Style>
                                                         <Style TargetType="Grid">
-                                                            <Setter Property="Opacity" Value="0.1"/>
-                                                            <Setter Property="Background" Value="White"/>
+                                                            <Setter Property="Opacity" Value="0.5"/>
+                                                            <Setter Property="Background" Value="DeepSkyBlue"/>
                                                             <Style.Triggers>
                                                                 <DataTrigger Binding="{Binding IsTargeting}" Value="True">
+                                                                    <Setter Property="Background" Value="White"/>
                                                                     <Setter Property="Opacity" Value="1"/>
                                                                 </DataTrigger>
                                                                 <DataTrigger Binding="{Binding Skip}" Value="True">
                                                                     <Setter Property="Background" Value="OrangeRed"/>
-                                                                    <Setter Property="Opacity" Value="0.3"/>
                                                                 </DataTrigger>
                                                                 <DataTrigger Binding="{Binding EndLine}" Value="True">
                                                                     <Setter Property="Background" Value="GreenYellow"/>
-                                                                    <Setter Property="Opacity" Value="0.3"/>
                                                                 </DataTrigger>
                                                             </Style.Triggers>
                                                         </Style>
