@@ -36,15 +36,9 @@ namespace Ruminoid.Trimmer.Shell.Views
 
         #region Operations
 
-        public void Apply()
-        {
+        public void Apply() => LrcModel.Current.Apply(new Position(PlaybackView.Current.MediaPlayer.Time));
 
-        }
-
-        public void Undo()
-        {
-
-        }
+        public void Undo() => LrcModel.Current.Undo();
 
         #endregion
 
