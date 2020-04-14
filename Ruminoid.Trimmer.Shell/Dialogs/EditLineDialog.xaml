@@ -19,7 +19,8 @@
         Title="编辑" WindowStartupLocation="CenterScreen"
         ShowInTaskbar="False"
         Topmost="True"
-        Name="RootElement">
+        Name="RootElement"
+        PreviewKeyDown="EditLineDialog_OnPreviewKeyDown">
 
     <controls:MetroWindow.Resources>
         <ResourceDictionary>

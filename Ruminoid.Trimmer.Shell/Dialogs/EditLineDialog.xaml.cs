@@ -24,8 +24,21 @@ namespace Ruminoid.Trimmer.Shell.Dialogs
 
         public EditLineDialog()
         {
+
             InitializeComponent();
+
+            Loaded += OnLoaded;
+
         }
+
+        #region OnLoaded
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            InputBox.Focus();
+        }
+
+        #endregion
 
         #region ShowHelper
 
@@ -91,5 +104,27 @@ namespace Ruminoid.Trimmer.Shell.Dialogs
             if (s?.Tag != null && s.Tag.ToString() == "Apply") Data = InputBox.Text;
             Close();
         }
+
+        private void EditLineDialog_OnPreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                e.Handled = true;
+                Close();
+            }
+            if (e.Key != Key.Enter) return;
+            if (!IsAddMode)
+            {
+                Data = InputBox.Text;
+                e.Handled = true;
+                Close();
+                return;
+            }
+            if ((Keyboard.Modifiers & ModifierKeys.Control) != ModifierKeys.Control) return;
+            Data = InputBox.Text;
+            e.Handled = true;
+            Close();
+        }
+
     }
 }
