@@ -32,6 +32,12 @@ namespace Ruminoid.Trimmer.Shell.Models
             IsModified = true;
         }
 
+        public Position(Position position)
+        {
+            Time = position.Time;
+            IsModified = true;
+        }
+
         #endregion
 
         #region DataContext
