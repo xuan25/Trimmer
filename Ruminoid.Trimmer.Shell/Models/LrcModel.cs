@@ -67,6 +67,22 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         #endregion
 
+        #region GlobalIndex
+
+        private int _globalIndex = -1;
+
+        public int GlobalIndex
+        {
+            get => _globalIndex;
+            set
+            {
+                _globalIndex = value;
+                OnLrcModelPropertyChanged();
+            }
+        }
+
+        #endregion
+
         #region PropertyChanged
 
         private void OnLrcModelPropertyChanged([CallerMemberName] string propertyName = null)
