@@ -104,6 +104,11 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         }
 
+        public void Undo()
+        {
+
+        }
+
         #endregion
 
     }
