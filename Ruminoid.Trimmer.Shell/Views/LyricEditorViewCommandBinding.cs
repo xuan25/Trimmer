@@ -25,7 +25,7 @@ namespace Ruminoid.Trimmer.Shell.Views
         public void AddLyrics_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             EditLineDialog.ShowAddDialog();
-            LrcModel.Current.AddLyrics(EditLineDialog.Data);
+            if (!string.IsNullOrEmpty(EditLineDialog.Data)) LrcModel.Current.AddLyrics(EditLineDialog.Data);
         }
 
         private void CanExecute(object sender, CanExecuteRoutedEventArgs e)
