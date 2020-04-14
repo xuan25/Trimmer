@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using MS.WindowsAPICodePack.Internal;
 
 namespace Ruminoid.Trimmer.Shell.Models
 {
@@ -41,29 +42,29 @@ namespace Ruminoid.Trimmer.Shell.Models
             }
         }
 
-        private LrcLine _selectedItem;
+        //private LrcLine _selectedItem;
 
-        public LrcLine SelectedItem
-        {
-            get => _selectedItem;
-            set
-            {
-                _selectedItem = value;
-                OnLrcModelPropertyChanged();
-            }
-        }
+        //public LrcLine SelectedItem
+        //{
+        //    get => _selectedItem;
+        //    set
+        //    {
+        //        _selectedItem = value;
+        //        OnLrcModelPropertyChanged();
+        //    }
+        //}
 
-        private int _selectedIndex = -1;
+        //private int _selectedIndex = -1;
 
-        public int SelectedIndex
-        {
-            get => _selectedIndex;
-            set
-            {
-                _selectedIndex = value;
-                OnLrcModelPropertyChanged();
-            }
-        }
+        //public int SelectedIndex
+        //{
+        //    get => _selectedIndex;
+        //    set
+        //    {
+        //        _selectedIndex = value;
+        //        OnLrcModelPropertyChanged();
+        //    }
+        //}
 
         #endregion
 
@@ -77,9 +78,71 @@ namespace Ruminoid.Trimmer.Shell.Models
             set
             {
                 _globalIndex = value;
+                ClearTargeting?.Invoke();
                 OnLrcModelPropertyChanged();
+                (LrcChar c, LrcLine l) = GetCharAndLine(_globalIndex);
+                c.IsTargeting = true;
+                l.IsTargeting = true;
             }
         }
+
+        public int MeasureLineIndex(LrcLine line)
+        {
+            if (line is null) throw new ArgumentNullException(nameof(line), @"Line cannot be null");
+            int index = -1;
+            foreach (LrcLine lrcLine in Items)
+            {
+                if (lrcLine == line)
+                    return index + 1;
+                index += lrcLine.Items.Count;
+            }
+
+            return -1;
+        }
+
+        public LrcChar GetChar() => GetChar(GlobalIndex);
+
+        public LrcChar GetChar(int index)
+        {
+            int i = -1;
+            foreach (LrcLine line in Items)
+            {
+                if (i + line.Items.Count >= index)
+                {
+                    int d = index - i - 1;
+                    return d < 0 ? null : line.Items[d];
+                }
+
+                i += line.Items.Count;
+            }
+
+            return null;
+        }
+
+        public (LrcChar, LrcLine) GetCharAndLine(int index)
+        {
+            int i = -1;
+            foreach (LrcLine line in Items)
+            {
+                if (i + line.Items.Count >= index)
+                {
+                    int d = index - i - 1;
+                    return d < 0 ? (null, null) : (line.Items[d], line);
+                }
+
+                i += line.Items.Count;
+            }
+
+            return (null, null);
+        }
+
+        #endregion
+
+        #region ClearTargeting
+
+        public delegate void ClearTargetingHandler();
+
+        public event ClearTargetingHandler ClearTargeting;
 
         #endregion
 
@@ -102,7 +165,9 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         public void AddLyrics(string[] lyrics)
         {
+            bool resetIndex = Items.Count == 0;
             foreach (string lyric in lyrics) AddLyric(lyric);
+            if (resetIndex) GlobalIndex = 0;
         }
 
         public void AddLyric(string lyric)
@@ -118,12 +183,49 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         public void Apply(Position position)
         {
+            LrcChar chr = GetChar();
+            if (chr is null) return;
+            chr.Position = position;
+            chr.IsCompleted = true;
+            int delta = 1;
+            while (true)
+            {
+                LrcChar c = GetChar(GlobalIndex + delta);
+                if (c is null) break;
+                if (c.Skip) delta++;
+                else break;
+            }
 
+            GlobalIndex += delta;
         }
 
         public void Undo()
         {
+            LrcChar chr = GetChar(GlobalIndex - 1);
+            if (chr is null) return;
+            chr.Position = new Position();
+            chr.IsCompleted = false;
+            GlobalIndex--;
+        }
 
+        public void ResetLineData(LrcLine line, string data)
+        {
+            int mIndex = MeasureLineIndex(line);
+            int oldCount = line.Items.Count;
+            bool decreaseIndex = mIndex < GlobalIndex;
+            if (mIndex == -1) decreaseIndex = false;
+            line.ResetData(data);
+            if (decreaseIndex) GlobalIndex = GlobalIndex - oldCount + line.Items.Count;
+        }
+
+        public void RemoveLine(LrcLine line)
+        {
+            int mIndex = MeasureLineIndex(line);
+            int oldCount = line.Items.Count;
+            bool decreaseIndex = mIndex < GlobalIndex;
+            if (mIndex == -1) decreaseIndex = false;
+            Current.Items.Remove(line);
+            if (decreaseIndex) GlobalIndex -= oldCount;
         }
 
         #endregion
@@ -138,9 +240,16 @@ namespace Ruminoid.Trimmer.Shell.Models
         public LrcLine()
         {
             Origin = "";
+            LrcModel.Current.ClearTargeting += OnClearTargeting;
         }
 
-        public LrcLine(string lyric) => ResetData(lyric);
+        public LrcLine(string lyric)
+        {
+            LrcModel.Current.ClearTargeting += OnClearTargeting;
+            ResetData(lyric);
+        }
+
+        private void OnClearTargeting() => IsTargeting = false;
 
         #endregion
 
@@ -158,29 +267,29 @@ namespace Ruminoid.Trimmer.Shell.Models
             }
         }
 
-        private LrcChar _selectedItem;
+        //private LrcChar _selectedItem;
 
-        public LrcChar SelectedItem
-        {
-            get => _selectedItem;
-            set
-            {
-                _selectedItem = value;
-                OnLrcLinePropertyChanged();
-            }
-        }
+        //public LrcChar SelectedItem
+        //{
+        //    get => _selectedItem;
+        //    set
+        //    {
+        //        _selectedItem = value;
+        //        OnLrcLinePropertyChanged();
+        //    }
+        //}
 
-        private int _selectedIndex = -1;
+        //private int _selectedIndex = -1;
 
-        public int SelectedIndex
-        {
-            get => _selectedIndex;
-            set
-            {
-                _selectedIndex = value;
-                OnLrcLinePropertyChanged();
-            }
-        }
+        //public int SelectedIndex
+        //{
+        //    get => _selectedIndex;
+        //    set
+        //    {
+        //        _selectedIndex = value;
+        //        OnLrcLinePropertyChanged();
+        //    }
+        //}
 
         #endregion
 
@@ -223,20 +332,24 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         public LrcChar()
         {
-
+            LrcModel.Current.ClearTargeting += OnClearTargeting;
         }
 
         public LrcChar(char chr)
         {
+            LrcModel.Current.ClearTargeting += OnClearTargeting;
             Char = chr;
         }
 
         public LrcChar(char chr, Position position)
         {
+            LrcModel.Current.ClearTargeting += OnClearTargeting;
             Char = chr;
             Position = position;
             IsModified = true;
         }
+
+        private void OnClearTargeting() => IsTargeting = false;
 
         #endregion
 

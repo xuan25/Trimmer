@@ -46,12 +46,11 @@ namespace Ruminoid.Trimmer.Shell.Views
         private void EditLineButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             Button s = sender as Button;
-            if (s is null) return;
-            LrcLine line = s.DataContext as LrcLine;
-            EditLineDialog.ShowEditDialog((line?.Origin ?? "").Replace("\r", "").Replace("\n", ""));
+            if (!(s?.DataContext is LrcLine line)) return;
+            EditLineDialog.ShowEditDialog((line.Origin ?? "").Replace("\r", "").Replace("\n", ""));
             string data = EditLineDialog.GetData();
             if (string.IsNullOrEmpty(data)) return;
-            line?.ResetData(data);
+            LrcModel.Current.ResetLineData(line, data);
         }
 
         private void DeleteLineButtonBase_OnClick(object sender, RoutedEventArgs e)
@@ -63,10 +62,9 @@ namespace Ruminoid.Trimmer.Shell.Views
                 MessageBoxImage.Warning,
                 MessageBoxResult.No);
             if (result != MessageBoxResult.Yes) return;
-            Button s = sender as Button;
-            if (s is null) return;
+            if (!(sender is Button s)) return;
             LrcLine line = s.DataContext as LrcLine;
-            LrcModel.Current.Items.Remove(line);
+            LrcModel.Current.RemoveLine(line);
         }
 
         #endregion
