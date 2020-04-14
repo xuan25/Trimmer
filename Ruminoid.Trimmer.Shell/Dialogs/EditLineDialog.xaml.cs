@@ -45,7 +45,7 @@ namespace Ruminoid.Trimmer.Shell.Dialogs
 
         private static void CheckDialog()
         {
-            if (Current is null) Current = new EditLineDialog();
+            Current = new EditLineDialog();
         }
 
         #endregion
