@@ -19,7 +19,7 @@
     <UserControl.Resources>
         <Style x:Key="BgNotiStyle" TargetType="TextBlock">
             <Setter Property="Opacity" Value="0.5"/>
-            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="FontSize" Value="16"/>
         </Style>
     </UserControl.Resources>
 
@@ -28,15 +28,15 @@
                     DataContext="{x:Static models:LrcModel.Current}">
             <Grid Margin="12">
                 <TextBlock Style="{StaticResource BgNotiStyle}" Text="添加歌词" HorizontalAlignment="Left"/>
-                <TextBlock Style="{StaticResource BgNotiStyle}" Text="Ctrl + T" HorizontalAlignment="Right"></TextBlock>
+                <TextBlock Style="{StaticResource BgNotiStyle}" Text="Ctrl + T" HorizontalAlignment="Right"/>
             </Grid>
             <Grid Margin="12">
                 <TextBlock Style="{StaticResource BgNotiStyle}" Text="加载媒体" HorizontalAlignment="Left"/>
-                <TextBlock Style="{StaticResource BgNotiStyle}" Text="Ctrl + L" HorizontalAlignment="Right"></TextBlock>
+                <TextBlock Style="{StaticResource BgNotiStyle}" Text="Ctrl + L" HorizontalAlignment="Right"/>
             </Grid>
             <Grid Margin="12">
                 <TextBlock Style="{StaticResource BgNotiStyle}" Text="播放/暂停" HorizontalAlignment="Left"/>
-                <TextBlock Style="{StaticResource BgNotiStyle}" Text="空格" HorizontalAlignment="Right"></TextBlock>
+                <TextBlock Style="{StaticResource BgNotiStyle}" Text="空格" HorizontalAlignment="Right"/>
             </Grid>
             <StackPanel.Style>
                 <Style TargetType="StackPanel">
@@ -54,7 +54,6 @@
         <ListView  Background="{x:Null}" Foreground="White" Name="RootView"
                   DataContext="{x:Static models:LrcModel.Current}"
                   ItemsSource="{Binding Items}"
-                  SelectedIndex="{Binding SelectedIndex}"
                   SelectionMode="Single"
                   HorizontalContentAlignment="Stretch"
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled">
@@ -74,7 +73,6 @@
                             <Grid>
                                 <ListView Background="#55000000"
                                        ItemsSource="{Binding Items}"
-                                       SelectedIndex="{Binding SelectedIndex}"
                                        SelectionMode="Single"
                                        BorderBrush="{x:Null}"
                                        ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -129,7 +127,7 @@
                                                                 <Setter Property="Visibility" Value="Hidden"/>
                                                                 <Style.Triggers>
                                                                     <DataTrigger Binding="{Binding IsCompleted}" Value="True">
-                                                                        <Setter Property="Visibility" Value="Visible"></Setter>
+                                                                        <Setter Property="Visibility" Value="Visible"/>
                                                                     </DataTrigger>
                                                                 </Style.Triggers>
                                                             </Style>
@@ -169,7 +167,23 @@
                                 </ListView>
                             </Grid>
                             <Grid Grid.Column="1">
-                                <StackPanel Margin="3" VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Margin="6,1,0,1" Width="4" Background="White">
+                                    <Grid.Style>
+                                        <Style TargetType="Grid">
+                                            <Setter Property="Opacity" Value="0.2"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsTargeting}" Value="True">
+                                                    <Setter Property="Opacity" Value="1"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Grid.Style>
+                                </Grid>
+                                <StackPanel Grid.Column="1" Margin="3" VerticalAlignment="Center">
                                     <Button Margin="3" ToolTip="编辑行..." Click="EditLineButtonBase_OnClick">
                                         <visualIcon:Icon Type="Edit" Margin="3"/>
                                     </Button>
