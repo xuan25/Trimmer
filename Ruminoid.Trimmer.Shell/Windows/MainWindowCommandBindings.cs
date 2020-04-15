@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Ruminoid.Trimmer.Shell.Commands;
+using Ruminoid.Trimmer.Shell.Dialogs;
 using Ruminoid.Trimmer.Shell.Models;
 using Ruminoid.Trimmer.Shell.Views;
 using Squirrel;
@@ -72,10 +73,7 @@ namespace Ruminoid.Trimmer.Shell.Windows
         
         #region File
 
-        private void Command_Save(object sender, ExecutedRoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        private void Command_Save(object sender, ExecutedRoutedEventArgs e) => new SaveFileDialog().ShowDialog();
 
         private void Command_ExitApp(object sender, ExecutedRoutedEventArgs e)
         {
