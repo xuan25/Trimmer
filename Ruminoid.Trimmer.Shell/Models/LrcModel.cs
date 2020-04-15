@@ -246,18 +246,14 @@ namespace Ruminoid.Trimmer.Shell.Models
         {
             (LrcChar chr, LrcLine line) = GetCharAndLine();
             if (chr is null || line is null) return;
-            if (chr != line.Items.LastOrDefault()) return;
-            line.Items.Add(new LrcChar(' ', position) {EndLine = true, IsCompleted = true});
-            int delta = 1;
-            while (true)
-            {
-                LrcChar c = GetChar(GlobalIndex + delta);
-                if (c is null) break;
-                if (c.Skip) delta++;
-                else break;
-            }
-
-            GlobalIndex += delta;
+            int index = Items.IndexOf(line);
+            if (index <= 0) return;
+            LrcLine before = Items[index - 1];
+            LrcChar c = before?.Items.LastOrDefault();
+            if (c is null) return;
+            if (c.EndLine) return;
+            before.Items.Add(new LrcChar(' ', position) {EndLine = true, IsCompleted = true});
+            GlobalIndex++;
         }
 
         public void ResetLineData(LrcLine line, string data)
