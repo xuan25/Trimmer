@@ -18,13 +18,14 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ComboBox Name="RootBox" Margin="0,12"
+        <ComboBox Name="RootBox" Margin="0,12,0,0"
                   ItemsSource="{Binding ElementName=RootElement, Path=TypeList}"
                   DisplayMemberPath="Name"
                   SelectedItem="{Binding ElementName=RootElement, Path=SelectedType}"
                   SelectedIndex="0"
                   IsEnabled="{Binding ElementName=RootElement, Path=IsEnabled}"/>
-        <TextBlock Grid.Row="1" Margin="0,12" Opacity="0.5"
-                   Text="{Binding ElementName=RootElement, Path=SelectedType.Description}"/>
+        <TextBlock Grid.Row="1" Margin="0,12,0,0" Opacity="0.5"
+                   Text="{Binding ElementName=RootElement, Path=SelectedType.Description}"
+                   MinHeight="50"/>
     </Grid>
 </UserControl>
