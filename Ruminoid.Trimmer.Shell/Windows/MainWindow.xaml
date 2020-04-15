@@ -162,7 +162,7 @@
                     <Button
                         Name="WwUp" Grid.Column="1"
                         Padding="0"
-                        ToolTip="撤销 (上箭头)"
+                        ToolTip="撤销 (W，O，上箭头)"
                         Tag="Up"
                         Click="WwControl_OnClick">
                         <Button.Style>
@@ -180,7 +180,7 @@
                     <Button
                         Name="WwLeft" Grid.Row="1" Grid.Column="0"
                         Padding="0"
-                        ToolTip="快退 (左箭头)"
+                        ToolTip="快退 (A, K, 左箭头)"
                         Tag="Left"
                         Click="WwControl_OnClick">
                         <Button.Style>
@@ -206,7 +206,7 @@
                     <Button
                         Name="WwRight" Grid.Row="1" Grid.Column="2"
                         Padding="0"
-                        ToolTip="快进 (右箭头)"
+                        ToolTip="快进 (D, 分号, 右箭头)"
                         Tag="Right"
                         Click="WwControl_OnClick">
                         <Button.Style>
@@ -224,7 +224,7 @@
                     <Button
                         Name="WwDown" Grid.Row="2" Grid.Column="1"
                         Padding="0"
-                        ToolTip="应用时间 (下箭头)"
+                        ToolTip="应用时间 (S, L, 下箭头)"
                         Tag="Down"
                         Click="WwControl_OnClick">
                         <Button.Style>
@@ -238,6 +238,42 @@
                             </Style>
                         </Button.Style>
                         <visualIcon:Icon Type="ApplyCodeChanges"/>
+                    </Button>
+                    <Button
+                        Name="WwSkip" Grid.Row="2" Grid.Column="0"
+                        Padding="0"
+                        ToolTip="跳过 (Z, 逗号)"
+                        Tag="Skip"
+                        Click="WwControl_OnClick">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="{DynamicResource BackgroundBrushKey}"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=RootElement, Path=IsSkipPressed}" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource AccentBrushKey}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <visualIcon:Icon Type="SkipFile"/>
+                    </Button>
+                    <Button
+                        Name="WwReturn" Grid.Row="2" Grid.Column="2"
+                        Padding="0"
+                        ToolTip="结束这行 (X, 句号)"
+                        Tag="Return"
+                        Click="WwControl_OnClick">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="{DynamicResource BackgroundBrushKey}"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=RootElement, Path=IsReturnPressed}" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource AccentBrushKey}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <visualIcon:Icon Type="Return"/>
                     </Button>
                 </Grid>
                 <Grid Background="{DynamicResource BackgroundBrushKey}" Width="181">

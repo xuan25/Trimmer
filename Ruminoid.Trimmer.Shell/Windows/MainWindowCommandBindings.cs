@@ -130,25 +130,54 @@ namespace Ruminoid.Trimmer.Shell.Windows
         private void MainWindow_OnPreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (!IsHandling) return;
+            if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control) return;
             if (
+                e.Key == Key.Z ||
+                e.Key == Key.OemComma ||
+                e.Key == Key.X ||
+                e.Key == Key.OemPeriod ||
                 e.Key == Key.Space ||
+                e.Key == Key.A ||
+                e.Key == Key.K ||
                 e.Key == Key.Left ||
+                e.Key == Key.D ||
+                e.Key == Key.OemSemicolon ||
                 e.Key == Key.Right ||
+                e.Key == Key.W ||
+                e.Key == Key.O ||
                 e.Key == Key.Up ||
+                e.Key == Key.S ||
+                e.Key == Key.L ||
                 e.Key == Key.Down) e.Handled = true;
             switch (e.Key)
             {
+                case Key.A:
+                case Key.K:
                 case Key.Left:
                     IsLeftPressed = true;
                     break;
+                case Key.D:
+                case Key.OemSemicolon:
                 case Key.Right:
                     IsRightPressed = true;
                     break;
+                case Key.W:
+                case Key.O:
                 case Key.Up:
                     IsUpPressed = true;
                     break;
+                case Key.S:
+                case Key.L:
                 case Key.Down:
                     IsDownPressed = true;
+                    break;
+                case Key.Z:
+                case Key.OemComma:
+                    IsSkipPressed = true;
+                    break;
+                case Key.X:
+                case Key.OemPeriod:
+                    IsReturnPressed = true;
                     break;
             }
             TriggerKeyPress(e.Key);
@@ -157,19 +186,36 @@ namespace Ruminoid.Trimmer.Shell.Windows
         private void MainWindow_OnPreviewKeyUp(object sender, KeyEventArgs e)
         {
             if (!IsHandling) return;
+            if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control) return;
             switch (e.Key)
             {
+                case Key.A:
+                case Key.K:
                 case Key.Left:
                     IsLeftPressed = false;
                     break;
+                case Key.D:
+                case Key.OemSemicolon:
                 case Key.Right:
                     IsRightPressed = false;
                     break;
+                case Key.W:
+                case Key.O:
                 case Key.Up:
                     IsUpPressed = false;
                     break;
+                case Key.S:
+                case Key.L:
                 case Key.Down:
                     IsDownPressed = false;
+                    break;
+                case Key.Z:
+                case Key.OemComma:
+                    IsSkipPressed = false;
+                    break;
+                case Key.X:
+                case Key.OemPeriod:
+                    IsReturnPressed = false;
                     break;
             }
         }
@@ -192,6 +238,12 @@ namespace Ruminoid.Trimmer.Shell.Windows
                 case "Down":
                     TriggerKeyPress(Key.Down);
                     break;
+                case "Skip":
+                    TriggerKeyPress(Key.Z);
+                    break;
+                case "Return":
+                    TriggerKeyPress(Key.X);
+                    return;
             }
         }
 
@@ -202,16 +254,32 @@ namespace Ruminoid.Trimmer.Shell.Windows
                 case Key.Space:
                     if (PlaybackView.Current.MediaLoaded) PlaybackView.Current.Playing = !PlaybackView.Current.Playing;
                     break;
+                case Key.S:
+                case Key.L:
                 case Key.Down:
                     LyricEditorView.Current.Apply();
                     break;
+                case Key.W:
+                case Key.O:
                 case Key.Up:
                     LyricEditorView.Current.Undo();
                     break;
+                case Key.Z:
+                case Key.OemComma:
+                    LyricEditorView.Current.Skip();
+                    break;
+                case Key.X:
+                case Key.OemPeriod:
+                    LyricEditorView.Current.Break();
+                    break;
+                case Key.A:
+                case Key.K:
                 case Key.Left:
                     PlaybackView.Current.MediaPlayer.Time -= 1000;
                     PlaybackView.Current.Position.Time = PlaybackView.Current.MediaPlayer.Time;
                     break;
+                case Key.D:
+                case Key.OemSemicolon:
                 case Key.Right:
                     PlaybackView.Current.MediaPlayer.Time += 1000;
                     PlaybackView.Current.Position.Time = PlaybackView.Current.MediaPlayer.Time;
@@ -279,6 +347,30 @@ namespace Ruminoid.Trimmer.Shell.Windows
             set
             {
                 _isDownPressed = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isSkipPressed;
+
+        public bool IsSkipPressed
+        {
+            get => _isSkipPressed;
+            set
+            {
+                _isSkipPressed = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isReturnPressed;
+
+        public bool IsReturnPressed
+        {
+            get => _isReturnPressed;
+            set
+            {
+                _isReturnPressed = value;
                 OnPropertyChanged();
             }
         }

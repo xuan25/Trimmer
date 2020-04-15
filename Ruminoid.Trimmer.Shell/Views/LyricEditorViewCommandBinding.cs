@@ -43,6 +43,10 @@ namespace Ruminoid.Trimmer.Shell.Views
 
         public void Undo() => LrcModel.Current.Undo();
 
+        public void Skip() => LrcModel.Current.Skip();
+
+        public void Break() => LrcModel.Current.Break(new Position(PlaybackView.Current.MediaPlayer.Time));
+
         private void EditLineButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             Button s = sender as Button;
