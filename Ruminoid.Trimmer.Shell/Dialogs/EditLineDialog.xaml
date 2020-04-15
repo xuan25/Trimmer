@@ -67,7 +67,7 @@
                         <Setter Property="Text" Value="该行的时间戳将会被清空。"/>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding ElementName=RootElement, Path=IsAddMode}" Value="True">
-                                <Setter Property="Text" Value="可以键入多行歌词。若需控制行结束时间，请添加反斜杠指示符。"/>
+                                <Setter Property="Text" Value="可以键入多行歌词。"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>

@@ -328,11 +328,6 @@ namespace Ruminoid.Trimmer.Shell.Models
             foreach (char c in lyric)
             {
                 if (c == '\r' || c == '\n' || c == '\0') continue;
-                if (c == '\\')
-                {
-                    Items.Add(new LrcChar(' ') { EndLine = true });
-                    continue;
-                }
                 LrcChar lc = new LrcChar(c);
                 foreach (char s in LrcModel.SkipData)
                     if (c == s)
