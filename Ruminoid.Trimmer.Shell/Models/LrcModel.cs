@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -216,6 +216,16 @@ namespace Ruminoid.Trimmer.Shell.Models
             chr.Position = new Position();
             chr.IsCompleted = false;
             GlobalIndex -= delta;
+        }
+
+        public void Skip()
+        {
+
+        }
+
+        public void Break()
+        {
+
         }
 
         public void ResetLineData(LrcLine line, string data)
