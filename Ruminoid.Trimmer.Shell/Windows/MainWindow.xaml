@@ -181,7 +181,8 @@
                         Name="WwLeft" Grid.Row="1" Grid.Column="0"
                         Padding="0"
                         ToolTip="快退 (左箭头)"
-                        Tag="Left">
+                        Tag="Left"
+                        Click="WwControl_OnClick">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="{DynamicResource BackgroundBrushKey}"/>
@@ -206,7 +207,8 @@
                         Name="WwRight" Grid.Row="1" Grid.Column="2"
                         Padding="0"
                         ToolTip="快进 (右箭头)"
-                        Tag="Right">
+                        Tag="Right"
+                        Click="WwControl_OnClick">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="{DynamicResource BackgroundBrushKey}"/>
@@ -223,7 +225,8 @@
                         Name="WwDown" Grid.Row="2" Grid.Column="1"
                         Padding="0"
                         ToolTip="应用时间 (下箭头)"
-                        Tag="Down">
+                        Tag="Down"
+                        Click="WwControl_OnClick">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="{DynamicResource BackgroundBrushKey}"/>
