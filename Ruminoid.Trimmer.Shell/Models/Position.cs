@@ -151,11 +151,23 @@ namespace Ruminoid.Trimmer.Shell.Models
             _percentage = Time / (double) Total;
         }
 
-        public static (int, int) ConvertToHourMinute(int minute)
+        #endregion
+
+        #region Utilities
+
+        private static (int, int) ConvertToHourMinute(int minute)
         {
             int hour = minute / 60;
             return (hour, minute - hour * 60);
         }
+
+        public string ConvertToSubtitleTimestamp()
+        {
+            (int h, int m) = ConvertToHourMinute(Minute);
+            return $"[{h:D2}:{m:D2}:{Second:D2}.{TimeCode:D2}]";
+        }
+
+        public int CalculateDelta(Position nextPosition) => (int) ((nextPosition.Time - Time) / 10);
 
         #endregion
 
