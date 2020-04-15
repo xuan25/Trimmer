@@ -20,7 +20,6 @@
         Height="200" Width="500"
         Title="编辑" WindowStartupLocation="CenterScreen"
         ShowInTaskbar="False"
-        Topmost="True"
         Name="RootElement"
         PreviewKeyDown="EditLineDialog_OnPreviewKeyDown">
 
