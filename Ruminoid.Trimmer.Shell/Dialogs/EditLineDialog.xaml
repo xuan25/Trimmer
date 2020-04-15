@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:Ruminoid.Trimmer.Shell.Dialogs"
         xmlns:chrome="http://schemes.grabacr.net/winfx/2014/chrome"
         xmlns:controls="http://schemes.grabacr.net/winfx/2014/controls"
+        xmlns:ctrl="clr-namespace:Ruminoid.Trimmer.Shell.Controls"
+        xmlns:models="clr-namespace:Ruminoid.Trimmer.Shell.Models"
         mc:Ignorable="d"
         FontFamily="Segoe UI"
         Background="{DynamicResource ThemeBrushKey}"
@@ -60,6 +62,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <TextBlock Margin="0,0,0,12" Opacity="0.5">
                 <TextBlock.Style>
@@ -75,7 +78,18 @@
             </TextBlock>
             <TextBox Grid.Row="1" Background="{DynamicResource BackgroundBrushKey}" Foreground="White"
                      AcceptsReturn="{Binding ElementName=RootElement, Path=IsAddMode}" Name="InputBox"/>
-            <StackPanel Grid.Row="2" Orientation="Horizontal"
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="预处理器：" Margin="0,15,6,0"/>
+                <ctrl:ModeTypeControl
+                    Grid.Column="1"
+                    IsEnabled="False"
+                    TypeList="{x:Static models:ModeType.PreType}"/>
+            </Grid>
+            <StackPanel Grid.Row="3" Orientation="Horizontal"
                         HorizontalAlignment="Right"
                         Margin="0,12,0,0">
                 <Button Margin="12,0" Content="确定" MinWidth="80"
