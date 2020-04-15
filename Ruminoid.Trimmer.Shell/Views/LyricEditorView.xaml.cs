@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Ruminoid.Trimmer.Shell.Models;
 using YDock.Interface;
 
 namespace Ruminoid.Trimmer.Shell.Views
@@ -35,7 +36,11 @@ namespace Ruminoid.Trimmer.Shell.Views
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
+
             AddCommandBindings();
+
+            LrcModel.Current.SetTargeting += OnSetTargeting;
+
         }
 
         #endregion

@@ -84,6 +84,7 @@ namespace Ruminoid.Trimmer.Shell.Models
                 if (c is null || l is null) return;
                 c.IsTargeting = true;
                 l.IsTargeting = true;
+                SetTargeting?.Invoke(l);
             }
         }
 
@@ -139,11 +140,15 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         #endregion
 
-        #region ClearTargeting
+        #region Events
 
         public delegate void ClearTargetingHandler();
 
         public event ClearTargetingHandler ClearTargeting;
+
+        public delegate void SetTargetingHandler(LrcLine lrcLine);
+
+        public event SetTargetingHandler SetTargeting;
 
         #endregion
 

@@ -69,5 +69,14 @@ namespace Ruminoid.Trimmer.Shell.Views
 
         #endregion
 
+        #region Auto Scroll
+
+        private void OnSetTargeting(LrcLine lrcline)
+        {
+
+        }
+
+        #endregion
+
     }
 }
