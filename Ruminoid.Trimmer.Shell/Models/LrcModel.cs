@@ -121,6 +121,8 @@ namespace Ruminoid.Trimmer.Shell.Models
             return null;
         }
 
+        public (LrcChar, LrcLine) GetCharAndLine() => GetCharAndLine(GlobalIndex);
+
         public (LrcChar, LrcLine) GetCharAndLine(int index)
         {
             int i = -1;
@@ -225,12 +227,37 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         public void Skip()
         {
+            LrcChar chr = GetChar();
+            if (chr is null) return;
+            chr.Skip = true;
+            int delta = 1;
+            while (true)
+            {
+                LrcChar c = GetChar(GlobalIndex + delta);
+                if (c is null) break;
+                if (c.Skip) delta++;
+                else break;
+            }
 
+            GlobalIndex += delta;
         }
 
-        public void Break()
+        public void Break(Position position)
         {
+            (LrcChar chr, LrcLine line) = GetCharAndLine();
+            if (chr is null || line is null) return;
+            if (chr != line.Items.LastOrDefault()) return;
+            line.Items.Add(new LrcChar(' ', position) {EndLine = true, IsCompleted = true});
+            int delta = 1;
+            while (true)
+            {
+                LrcChar c = GetChar(GlobalIndex + delta);
+                if (c is null) break;
+                if (c.Skip) delta++;
+                else break;
+            }
 
+            GlobalIndex += delta;
         }
 
         public void ResetLineData(LrcLine line, string data)
