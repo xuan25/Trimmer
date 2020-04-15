@@ -128,6 +128,9 @@
     <Compile Include="Dialogs\EditLineDialog.xaml.cs">
       <DependentUpon>EditLineDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\SaveFileDialog.xaml.cs">
+      <DependentUpon>SaveFileDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\ConfigHelper.cs" />
     <Compile Include="Models\Export.cs" />
     <Compile Include="Models\LrcModel.cs" />
@@ -229,6 +232,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\EditLineDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\SaveFileDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
