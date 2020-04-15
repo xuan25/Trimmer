@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -202,11 +202,20 @@ namespace Ruminoid.Trimmer.Shell.Models
 
         public void Undo()
         {
-            LrcChar chr = GetChar(GlobalIndex - 1);
+            int delta = 1;
+            while (true)
+            {
+                LrcChar c = GetChar(GlobalIndex - delta);
+                if (c is null) break;
+                if (c.Skip) delta++;
+                else break;
+            }
+
+            LrcChar chr = GetChar(GlobalIndex - delta);
             if (chr is null) return;
             chr.Position = new Position();
             chr.IsCompleted = false;
-            GlobalIndex--;
+            GlobalIndex -= delta;
         }
 
         public void ResetLineData(LrcLine line, string data)
