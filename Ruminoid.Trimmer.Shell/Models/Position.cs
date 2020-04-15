@@ -151,6 +151,12 @@ namespace Ruminoid.Trimmer.Shell.Models
             _percentage = Time / (double) Total;
         }
 
+        public static (int, int) ConvertToHourMinute(int minute)
+        {
+            int hour = minute / 60;
+            return (hour, minute - hour * 60);
+        }
+
         #endregion
 
         #region PropertyChanged
