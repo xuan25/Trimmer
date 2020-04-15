@@ -164,7 +164,7 @@ namespace Ruminoid.Trimmer.Shell.Models
         public string ConvertToSubtitleTimestamp()
         {
             (int h, int m) = ConvertToHourMinute(Minute);
-            return $"[{h:D2}:{m:D2}:{Second:D2}.{TimeCode:D2}]";
+            return $"{h:D2}:{m:D2}:{Second:D2}.{TimeCode:D2}";
         }
 
         public int CalculateDelta(Position nextPosition) => (int) ((nextPosition.Time - Time) / 10);
