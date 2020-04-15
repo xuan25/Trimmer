@@ -22,7 +22,8 @@
                   ItemsSource="{Binding ElementName=RootElement, Path=TypeList}"
                   DisplayMemberPath="Name"
                   SelectedItem="{Binding ElementName=RootElement, Path=SelectedType}"
-                  SelectedIndex="0"/>
+                  SelectedIndex="0"
+                  IsEnabled="{Binding ElementName=RootElement, Path=IsEnabled}"/>
         <TextBlock Grid.Row="1" Margin="0,12" Opacity="0.5"
                    Text="{Binding ElementName=RootElement, Path=SelectedType.Description}"/>
     </Grid>
