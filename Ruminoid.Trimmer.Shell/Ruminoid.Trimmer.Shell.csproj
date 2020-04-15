@@ -122,6 +122,9 @@
     <Compile Include="Commands\MainCommands.cs" />
     <Compile Include="Commands\PlaybackCommands.cs" />
     <Compile Include="Commands\ViewCommands.cs" />
+    <Compile Include="Controls\ModeTypeControl.xaml.cs">
+      <DependentUpon>ModeTypeControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\EditLineDialog.xaml.cs">
       <DependentUpon>EditLineDialog.xaml</DependentUpon>
     </Compile>
@@ -221,6 +224,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\ModeTypeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialogs\EditLineDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -251,6 +258,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild" Condition=" '$(Configuration)' == 'Release'">
     <Message Text="Starting AfterBuild..." />
