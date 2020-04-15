@@ -21,7 +21,8 @@
         <ComboBox Name="RootBox" Margin="0,12"
                   ItemsSource="{Binding ElementName=RootElement, Path=TypeList}"
                   DisplayMemberPath="Name"
-                  SelectedItem="{Binding ElementName=RootElement, Path=SelectedType}"/>
+                  SelectedItem="{Binding ElementName=RootElement, Path=SelectedType}"
+                  SelectedIndex="0"/>
         <TextBlock Grid.Row="1" Margin="0,12" Opacity="0.5"
                    Text="{Binding ElementName=RootElement, Path=SelectedType.Description}"/>
     </Grid>
