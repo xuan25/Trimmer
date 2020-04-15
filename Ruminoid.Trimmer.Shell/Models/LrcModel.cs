@@ -245,7 +245,15 @@ namespace Ruminoid.Trimmer.Shell.Models
         public void Break(Position position)
         {
             (LrcChar chr, LrcLine line) = GetCharAndLine();
-            if (chr is null || line is null) return;
+            if (chr is null || line is null)
+            {
+                if (GetChar(GlobalIndex - 1) is null) return;
+                LrcLine l = Items.LastOrDefault();
+                LrcChar b = l?.Items.LastOrDefault();
+                if (b != null && !b.EndLine)
+                    l.Items.Add(new LrcChar(' ', position) {EndLine = true, IsCompleted = true});
+                return;
+            }
             int index = Items.IndexOf(line);
             if (index <= 0) return;
             LrcLine before = Items[index - 1];
