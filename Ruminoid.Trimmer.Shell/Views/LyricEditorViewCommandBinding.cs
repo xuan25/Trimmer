@@ -73,7 +73,14 @@ namespace Ruminoid.Trimmer.Shell.Views
 
         private void OnSetTargeting(LrcLine lrcline)
         {
-
+            try
+            {
+                RootView.ScrollIntoView(lrcline);
+            }
+            catch (Exception)
+            {
+                // Ignore
+            }
         }
 
         #endregion
