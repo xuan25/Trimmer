@@ -68,12 +68,12 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         {
             int i;
             for (i = 0; i < model.Items.Count - 1; i++)
-                GenerateLine(model.Items[i], model.Items[i + 1].Items.FirstOrDefault()?.Position);
-            GenerateLine(model.Items[i], null);
+                GenerateLine(model, i, model.Items[i], model.Items[i + 1].Items[0].Position);
+            GenerateLine(model, model.Items.Count - 1, model.Items[i], null);
             return _sb.ToString();
         }
 
-        private void GenerateLine(LrcLine line, Position endStamp)
+        private void GenerateLine(LrcModel model, int lineIndex, LrcLine line, Position endStamp)
         {
             if (line.Items.Count <= 0) return;
             int i;
@@ -88,17 +88,36 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
                     position = c.Position;
                     break;
                 }
+
+                if (position is null)
+                    for (int lineDelta = 1; lineDelta < model.Items.Count - lineIndex - 1; lineDelta++)
+                    {
+                        bool founded = false;
+                        LrcLine searchLine = model.Items[lineIndex + lineDelta];
+                        for (int d = 1; d < searchLine.Items.Count; d++)
+                        {
+                            LrcChar c = searchLine.Items[d];
+                            if (c.Skip || c.Position.Time <= 0) continue;
+                            position = c.Position;
+                            founded = true;
+                            break;
+                        }
+
+                        if (founded) break;
+                    }
+
                 if (position is null) position = new Position(line.Items[i].Position.Time + 20);
                 sc.Append(GenerateChar(line.Items[i], position).generated);
             }
             (Position e, string generated) = GenerateChar(line.Items[i], endStamp);
             _sb.AppendLine(
-                $"Dialogue: 0,{line.Items.FirstOrDefault()?.Position.ConvertToSubtitleTimestamp()},{e.ConvertToSubtitleTimestamp()},Default,,0,0,0,,{sc}{generated}");
+                $"Dialogue: 0,{line.Items[0].Position.ConvertToSubtitleTimestamp()},{e.ConvertToSubtitleTimestamp()},Default,,0,0,0,,{sc}{generated}");
         }
 
         private (Position endStamp, string generated) GenerateChar(LrcChar chr, Position endStamp)
         {
             Position e = endStamp ?? new Position(chr.Position.Time + 20);
+            if (endStamp is null) return (e, chr.Char.ToString());
             if (chr.EndLine) return (chr.Position, "");
             return chr.Skip ? (e, chr.Char.ToString()) : (e, "{\\" + _type.Key + chr.Position.CalculateDelta(e) + "}" + chr.Char);
         }
