@@ -31,9 +31,15 @@ namespace Ruminoid.Trimmer.Shell.Views
             MediaPlayer.TimeChanged += (o, args) => Position.Time = args.Time;
             MediaPlayer.LengthChanged += (o, args) => Position.Total = args.Length;
 
-            AddCommandBindings();
+            Loaded += OnLoaded;
 
         }
+
+        #region Loaded
+
+        private void OnLoaded(object sender, RoutedEventArgs e) => AddCommandBindings();
+
+        #endregion
 
         #region VLC
 
