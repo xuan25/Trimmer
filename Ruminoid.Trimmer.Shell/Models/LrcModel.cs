@@ -251,7 +251,10 @@ namespace Ruminoid.Trimmer.Shell.Models
                 LrcLine l = Items.LastOrDefault();
                 LrcChar b = l?.Items.LastOrDefault();
                 if (b != null && !b.EndLine)
-                    l.Items.Add(new LrcChar(' ', position) {EndLine = true, IsCompleted = true});
+                {
+                    l.Items.Add(new LrcChar(' ', position) { EndLine = true, IsCompleted = true });
+                    GlobalIndex++;
+                }
                 return;
             }
             int index = Items.IndexOf(line);
