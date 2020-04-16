@@ -68,19 +68,29 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         {
             int i;
             for (i = 0; i < model.Items.Count - 1; i++)
-            {
                 GenerateLine(model.Items[i], model.Items[i + 1].Items.FirstOrDefault()?.Position);
-            }
             GenerateLine(model.Items[i], null);
             return _sb.ToString();
         }
 
         private void GenerateLine(LrcLine line, Position endStamp)
         {
+            if (line.Items.Count <= 0) return;
             int i;
             StringBuilder sc = new StringBuilder();
             for (i = 0; i < line.Items.Count - 1; i++)
-                sc.Append(GenerateChar(line.Items[i], line.Items[i + 1].Position).generated);
+            {
+                Position position = null;
+                for (int delta = 1; delta < line.Items.Count - i - 1; delta++)
+                {
+                    LrcChar c = line.Items[i + delta];
+                    if (c.Skip || c.Position.Time <= 0) continue;
+                    position = c.Position;
+                    break;
+                }
+                if (position is null) position = new Position(line.Items[i].Position.Time + 20);
+                sc.Append(GenerateChar(line.Items[i], position).generated);
+            }
             (Position e, string generated) = GenerateChar(line.Items[i], endStamp);
             _sb.AppendLine(
                 $"Dialogue: 0,{line.Items.FirstOrDefault()?.Position.ConvertToSubtitleTimestamp()},{e.ConvertToSubtitleTimestamp()},Default,,0,0,0,,{sc}{generated}");
@@ -88,7 +98,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
         private (Position endStamp, string generated) GenerateChar(LrcChar chr, Position endStamp)
         {
-            Position e = endStamp ?? new Position(chr.Position.Time + 200);
+            Position e = endStamp ?? new Position(chr.Position.Time + 20);
             if (chr.EndLine) return (chr.Position, "");
             return chr.Skip ? (e, chr.Char.ToString()) : (e, "{\\" + _type.Key + chr.Position.CalculateDelta(e) + "}" + chr.Char);
         }
