@@ -275,7 +275,7 @@
     <Message Text="Starting nuget pack..." />
     <Exec Command="nuget pack $(MSBuildProjectDirectory)\..\nuget\Ruminoid.Trimmer.nuspec -Version %(myAssemblyInfo.Version) -Properties Configuration=Release -OutputDirectory $(MSBuildProjectDirectory)\..\nuget\ -BasePath $(MSBuildProjectDirectory)\..\nuget\" />
     <Message Text="Starting Squirrel pack..." />
-    <Exec Command="Squirrel --releasify $(MSBuildProjectDirectory)\..\nuget\Ruminoid.Trimmer.$([System.Version]::Parse(%(myAssemblyInfo.Version)).ToString(3)).nupkg -g $(MSBuildProjectDirectory)\..\Assets\logo_v1.gif -r $(MSBuildProjectDirectory)\..\Releases\" />
+    <Exec Command="Squirrel --releasify $(MSBuildProjectDirectory)\..\nuget\RuminoidTrimmer.$([System.Version]::Parse(%(myAssemblyInfo.Version)).ToString(3)).nupkg -g $(MSBuildProjectDirectory)\..\Assets\logo_v1.gif -r $(MSBuildProjectDirectory)\..\Releases\" />
     <Message Text="AfterBuild complete." />
   </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
