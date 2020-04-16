@@ -62,9 +62,9 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
         #endregion
 
-        public void Export() => File.WriteAllText(_path, Generate(LrcModel.Current, _type), _encoding);
+        public void Export() => File.WriteAllText(_path, Generate(LrcModel.Current), _encoding);
 
-        private string Generate(LrcModel model, ModeType type)
+        private string Generate(LrcModel model)
         {
             int i;
             for (i = 0; i < model.Items.Count - 1; i++)
