@@ -66,7 +66,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Grid Width="80">
+                    <Grid Width="100">
                         <TextBlock Text="文件：" Margin="0,1,6,0" HorizontalAlignment="Right"/>
                     </Grid>
                     <Grid Grid.Column="1">
@@ -85,8 +85,8 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Grid Width="80">
-                        <TextBlock Text="预处理器：" Margin="0,15,6,0" HorizontalAlignment="Right"/>
+                    <Grid Width="100">
+                        <TextBlock Text="ASS标签模式：" Margin="0,15,6,0" HorizontalAlignment="Right"/>
                     </Grid>
                     <ctrl:ModeTypeControl
                         Grid.Column="1"
