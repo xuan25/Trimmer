@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -38,7 +38,10 @@ namespace Ruminoid.Trimmer.Shell.Views
             {
                 if (!MediaLoaded) return;
                 _playing = value;
-                MediaPlayer.SetPause(!value);
+                if (value)
+                    VideoElement.Play();
+                else
+                    VideoElement.Pause();
                 if (value) ThemeService.Current.ChangeAccent(Accent.Orange);
                 else ThemeService.Current.ChangeAccent(Accent.Blue);
                 OnPropertyChanged();

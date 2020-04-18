@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -70,7 +70,7 @@ namespace Ruminoid.Trimmer.Shell.Windows
             #endregion
 
         }
-        
+
         #region File
 
         private void Command_Save(object sender, ExecutedRoutedEventArgs e) => new SaveFileDialog().ShowDialog();
@@ -275,14 +275,12 @@ namespace Ruminoid.Trimmer.Shell.Windows
                 case Key.A:
                 case Key.K:
                 case Key.Left:
-                    PlaybackView.Current.MediaPlayer.Time -= 1000;
-                    PlaybackView.Current.Position.Time = PlaybackView.Current.MediaPlayer.Time;
+                    PlaybackView.Current.JumpDuration(-1000);
                     break;
                 case Key.D:
                 case Key.OemSemicolon:
                 case Key.Right:
-                    PlaybackView.Current.MediaPlayer.Time += 1000;
-                    PlaybackView.Current.Position.Time = PlaybackView.Current.MediaPlayer.Time;
+                    PlaybackView.Current.JumpDuration(+1000);
                     break;
             }
         }

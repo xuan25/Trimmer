@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -108,13 +108,15 @@ namespace Ruminoid.Trimmer.Shell.Models
         }
 
         private double _percentage;
-
         public double Percentage
         {
             get => _percentage;
             set
             {
-
+                _percentage = value;
+                ReverseConvertPercentage();
+                ConvertToPosition();
+                OnPositionActiveChanged?.Invoke();
             }
         }
 
@@ -149,6 +151,11 @@ namespace Ruminoid.Trimmer.Shell.Models
         private void ConvertPercentage()
         {
             _percentage = Time / (double) Total;
+        }
+
+        private void ReverseConvertPercentage()
+        {
+            Time = (long) (_percentage * Total);
         }
 
         #endregion
@@ -186,6 +193,9 @@ namespace Ruminoid.Trimmer.Shell.Models
             OnPropertyChanged(nameof(TimeCodeDisplay));
             IsModified = true;
         }
+
+        public delegate void PositionActiveChanged();
+        public event PositionActiveChanged OnPositionActiveChanged;
 
         #endregion
 

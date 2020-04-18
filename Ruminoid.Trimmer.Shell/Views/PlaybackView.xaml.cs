@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,9 +7,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
-using LibVLCSharp.Shared;
+using Unosquare.FFME.Common;
 using YDock.Interface;
-using MediaPlayer = LibVLCSharp.Shared.MediaPlayer;
 
 namespace Ruminoid.Trimmer.Shell.Views
 {
@@ -21,32 +20,21 @@ namespace Ruminoid.Trimmer.Shell.Views
 
         public PlaybackView()
         {
-
             InitializeComponent();
+            VideoElement.PositionChanged += (o, args) =>
+                Position.Time = (long) args.Position.TotalMilliseconds;
+            VideoElement.MediaOpened += (o, args) =>
+                Position.Total = (long) args.Info.Duration.TotalMilliseconds;
+            VideoElement.MediaFailed += (o, args) => Console.WriteLine(@"[FFME] MediaFailed : " + args.ErrorException);
+            VideoElement.MediaEnded += async (o, args) =>
+            {
+                await VideoElement.Seek(TimeSpan.Zero);
+                await VideoElement.Play();
+            };
+            Position.OnPositionActiveChanged += () => SeekToPosition(Position.Time);
 
-            Core.Initialize();
-            _libVLC = new LibVLC();
-            MediaPlayer = new MediaPlayer(_libVLC);
-            VideoView.MediaPlayer = MediaPlayer;
-            MediaPlayer.TimeChanged += (o, args) => Position.Time = args.Time;
-            MediaPlayer.LengthChanged += (o, args) => Position.Total = args.Length;
-
-            Loaded += OnLoaded;
-
+            AddCommandBindings();
         }
-
-        #region Loaded
-
-        private void OnLoaded(object sender, RoutedEventArgs e) => AddCommandBindings();
-
-        #endregion
-
-        #region VLC
-
-        private LibVLC _libVLC;
-        public MediaPlayer MediaPlayer;
-
-        #endregion
 
         #region Current
 
@@ -62,5 +50,24 @@ namespace Ruminoid.Trimmer.Shell.Views
 
         #endregion
 
+        public long PositionRealTime => (long) VideoElement.Position.TotalMilliseconds;
+
+        private void SeekToPosition(long time)
+        {
+            var target = TimeSpan.FromMilliseconds(time);
+            if (target.TotalMilliseconds < 0)
+                target = TimeSpan.Zero;
+            VideoElement.Seek(target).GetAwaiter().GetResult();
+            Position.Time = (long) target.TotalMilliseconds;
+        }
+
+        public void JumpDuration(long duration)
+        {
+            var target = VideoElement.Position + TimeSpan.FromMilliseconds(duration);
+            if (target.TotalMilliseconds < 0)
+                target = TimeSpan.Zero;
+            VideoElement.Seek(target).GetAwaiter().GetResult();
+            Position.Time = (long)target.TotalMilliseconds;
+        }
     }
 }

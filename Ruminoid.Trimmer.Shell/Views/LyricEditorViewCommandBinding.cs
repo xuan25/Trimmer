@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,13 +39,13 @@ namespace Ruminoid.Trimmer.Shell.Views
 
         #region Operations
 
-        public void Apply() => LrcModel.Current.Apply(new Position(PlaybackView.Current.MediaPlayer.Time));
+        public void Apply() => LrcModel.Current.Apply(new Position(PlaybackView.Current.PositionRealTime));
 
         public void Undo() => LrcModel.Current.Undo();
 
         public void Skip() => LrcModel.Current.Skip();
 
-        public void Break() => LrcModel.Current.Break(new Position(PlaybackView.Current.MediaPlayer.Time));
+        public void Break() => LrcModel.Current.Break(new Position(PlaybackView.Current.PositionRealTime));
 
         private void EditLineButtonBase_OnClick(object sender, RoutedEventArgs e)
         {

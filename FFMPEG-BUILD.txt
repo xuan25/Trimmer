@@ -1,0 +1,3 @@
+./configure --target-os=win64 --arch=x86_64 --toolchain=msvc --enable-gpl --disable-programs --disable-doc --disable-encoders --disable-muxers --disable-outdevs --disable-filters --enable-x86asm --prefix=/d/ffmpeg-src/ffmpeg/bin --enable-shared --disable-static
+make
+make install

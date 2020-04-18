@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -48,6 +48,8 @@ namespace Ruminoid.Trimmer.Shell
             };
 
             Shell.Properties.Resources.Culture = CultureInfo.CurrentUICulture;
+
+            Unosquare.FFME.Library.FFmpegDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ffmpeg") + "\\";
 
             if (MainWindow is null) MainWindow = new MainWindow();
             MainWindow.Show();

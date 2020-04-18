@@ -1,11 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using LibVLCSharp.Shared;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Ruminoid.Trimmer.Shell.Commands;
 
@@ -39,7 +38,7 @@ namespace Ruminoid.Trimmer.Shell.Views
 
         #region Playback
 
-        private void Commands_LoadMedia(object sender, ExecutedRoutedEventArgs e)
+        private async void Commands_LoadMedia(object sender, ExecutedRoutedEventArgs e)
         {
             Command_UnloadMedia(null, null);
             CommonOpenFileDialog fileDialog = new CommonOpenFileDialog
@@ -55,14 +54,20 @@ namespace Ruminoid.Trimmer.Shell.Views
             };
             if (fileDialog.ShowDialog() != CommonFileDialogResult.Ok)
                 return;
+            if (!DockControl?.IsVisible ?? true)
+                DockControl?.Show();
             MediaLoaded = true;
             Playing = true;
-            MediaPlayer.Play(new Media(_libVLC, fileDialog.FileName));
+            //MediaPlayer.Play(new Media(_libVLC, fileDialog.FileName));
+            await VideoElement.Open(new Uri(fileDialog.FileName));
+            await VideoElement.Play();
         }
 
-        private void Command_UnloadMedia(object sender, ExecutedRoutedEventArgs e)
+        private async void Command_UnloadMedia(object sender, ExecutedRoutedEventArgs e)
         {
-            MediaPlayer.Stop();
+            //MediaPlayer.Stop();
+            await VideoElement.Stop();
+            await VideoElement.Close();
             MediaLoaded = false;
             Position.Time = 0;
         }

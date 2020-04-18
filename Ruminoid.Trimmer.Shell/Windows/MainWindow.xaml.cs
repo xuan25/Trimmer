@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -107,9 +107,9 @@ namespace Ruminoid.Trimmer.Shell.Windows
                 LyricEditorView.Current.DockControl.Show();
             }
 
-            sliderBinding = new Binding();
-            sliderBinding.Source = PlaybackView.Current.Position;
-            sliderBinding.Path = new PropertyPath("Percentage");
+            //sliderBinding = new Binding();
+            //sliderBinding.Source = PlaybackView.Current.Position;
+            //sliderBinding.Path = new PropertyPath("Percentage");
 
             CheckBox welcomeBox = new CheckBox
             {
@@ -199,21 +199,20 @@ namespace Ruminoid.Trimmer.Shell.Windows
 
         private void Slider_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            BindingOperations.ClearBinding(Wnd6, RangeBase.ValueProperty);
-            Wnd6.Value = PlaybackView.Current.Position.Percentage;
-            Wnd6.ValueChanged += SliderOnValueChanged;
+            //BindingOperations.ClearBinding(Wnd6, RangeBase.ValueProperty);
+            //Wnd6.Value = PlaybackView.Current.Position.Percentage;
+            //Wnd6.ValueChanged += SliderOnValueChanged;
         }
 
         private void SliderOnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            PlaybackView.Current.MediaPlayer.Time = (long)(Wnd6.Value * PlaybackView.Current.Position.Total);
-            PlaybackView.Current.Position.Time = PlaybackView.Current.MediaPlayer.Time;
+            //PlaybackView.Current.SeekToPosition((long)(e.NewValue * PlaybackView.Current.Position.Total));
         }
 
         private void Slider_OnPreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
-            Wnd6.ValueChanged -= SliderOnValueChanged;
-            Wnd6.SetBinding(RangeBase.ValueProperty, sliderBinding);
+            //Wnd6.ValueChanged -= SliderOnValueChanged;
+            //Wnd6.SetBinding(RangeBase.ValueProperty, sliderBinding);
         }
 
         #endregion
