@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
+using Ruminoid.Trimmer.Shell.LibAss;
 using Unosquare.FFME.Common;
 using YDock.Interface;
 
@@ -31,9 +32,15 @@ namespace Ruminoid.Trimmer.Shell.Views
                 await VideoElement.Seek(TimeSpan.Zero);
                 await VideoElement.Play();
             };
+            VideoElement.RenderingVideo += RenderPreviewOnVideo;
             Position.OnPositionActiveChanged += () => SeekToPosition(Position.Time);
 
             AddCommandBindings();
+        }
+
+        private void RenderPreviewOnVideo(object sender, RenderingVideoEventArgs e)
+        {
+            _libAss.RenderAndBlend((int)e.Clock.TotalMilliseconds, e.Bitmap);
         }
 
         #region Current
@@ -41,6 +48,8 @@ namespace Ruminoid.Trimmer.Shell.Views
         public static PlaybackView Current { get; } = new PlaybackView();
 
         #endregion
+
+        private LibASSContext _libAss = new LibASSContext();
 
         #region DockSource
 
