@@ -112,18 +112,17 @@ Dialogue: 0,0:00:00.10,1:00:00.20,Default,,0,0,0,,LibASS Running";
                             uint srcRed, dstRed, finRed;
                             uint srcGreen, dstGreen, finGreen;
                             uint srcBlue, dstBlue, finBlue;
-                            float dstAlpha;
-                            uint srcAlpha;
+                            uint dstAlpha, srcAlpha, finAlpha;
 
                             // RGBA
-                            dstAlpha = (color & 0xFF) / 255.0F;
-                            dstRed = (uint) (((color >> 24) & 0xFF) * dstAlpha);
-                            dstGreen = (uint) (((color >> 16) & 0xFF) * dstAlpha);
-                            dstBlue = (uint) (((color >> 8) & 0xFF) * dstAlpha);
+                            dstAlpha = 255 - (color & 0xFF);
+                            dstRed = ((color >> 24) & 0xFF) * dstAlpha / 255;
+                            dstGreen = ((color >> 16) & 0xFF) * dstAlpha / 255;
+                            dstBlue = ((color >> 8) & 0xFF) * dstAlpha / 255;
 
-                            for (int x = 0; x < w; x++)
+                            for (var x = 0; x < w; x++)
                             {
-                                for (int y = 0; y < h; y++)
+                                for (var y = 0; y < h; y++)
                                 {
                                     srcCurrentPixel = (y + image.dst_y) * srcStride + x + image.dst_x;
                                     dstCurrentPixel = y * dstStride + x;
@@ -131,24 +130,22 @@ Dialogue: 0,0:00:00.10,1:00:00.20,Default,,0,0,0,,LibASS Running";
                                     image2Pixel = imgRaw[dstCurrentPixel];
 
                                     // ARGB
-                                    srcAlpha = (image1Pixel >> 24) & 0xFF;
-                                    srcRed = (image1Pixel >> 16) & 0xFF;
-                                    srcGreen = (image1Pixel >> 8) & 0xFF;
-                                    srcBlue = image1Pixel & 0xFF;
+                                    srcAlpha = ((image1Pixel >> 24) & 0xFF);
+                                    srcRed = ((image1Pixel >> 16) & 0xFF) * srcAlpha / 255;
+                                    srcGreen = ((image1Pixel >> 8) & 0xFF) * srcAlpha / 255;
+                                    srcBlue = (image1Pixel & 0xFF) * srcAlpha / 255;
 
-                                    float srcAlpha2 = 1 - image2Pixel / 255.0F; // intendedly
-                                    float dstAlpha2 = 1 - srcAlpha2;
+                                    uint dstAlpha2 = image2Pixel;
+                                    uint srcAlpha2 = 255 - dstAlpha2;
 
-                                    finRed = (uint) (srcRed * srcAlpha2 +
-                                                     dstAlpha2 * dstRed);
-                                    finGreen = (uint) (srcGreen * srcAlpha2 +
-                                                       dstAlpha2 * dstGreen);
-                                    finBlue = (uint) (srcBlue * srcAlpha2 +
-                                                      dstAlpha2 * dstBlue);
+                                    finRed = dstRed * dstAlpha2 / 255 + srcRed * srcAlpha2 / 255;
+                                    finGreen = dstGreen * dstAlpha2 / 255 + srcGreen * srcAlpha2 / 255;
+                                    finBlue = dstBlue * dstAlpha2 / 255 + srcBlue * srcAlpha2 / 255;
+                                    finAlpha = dstAlpha2 + srcAlpha * srcAlpha2 / 256;
 
                                     // ARGB
                                     sourceRaw[srcCurrentPixel] =
-                                        finBlue | finGreen << 8 | finRed << 16 | srcAlpha << 24;
+                                        finBlue | finGreen << 8 | finRed << 16 | finAlpha << 24;
                                 }
                             }
                         }
