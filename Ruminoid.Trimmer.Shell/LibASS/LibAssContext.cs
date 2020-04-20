@@ -54,7 +54,7 @@ Dialogue: 0,0:00:00.10,1:00:00.20,Default,,0,0,0,,LibASS Running";
         private IntPtr _track;
         private IntPtr _event;
         private ASS_Event _eventMarshaled;
-        private GCHandle? _pinnedString = null;
+        private IntPtr _gString = IntPtr.Zero;
 
         public LibASSContext()
         {
@@ -72,16 +72,20 @@ Dialogue: 0,0:00:00.10,1:00:00.20,Default,,0,0,0,,LibASS Running";
 
         public void Update(int start, int duration, string text)
         {
-            _pinnedString?.Free();
+            if (_gString != IntPtr.Zero)
+                Marshal.FreeHGlobal(_gString);
+            _gString = IntPtr.Zero;
             _eventMarshaled.Start = start;
             _eventMarshaled.Duration = duration;
 
             var textUTF8 = Encoding.UTF8.GetBytes(text);
-            var pinnedArray = GCHandle.Alloc(textUTF8, GCHandleType.Pinned);
-            _eventMarshaled.Text = pinnedArray.AddrOfPinnedObject();
+            var gString = Marshal.AllocHGlobal(textUTF8.Length + 1);
+            Marshal.Copy(textUTF8, 0, gString, textUTF8.Length);
+            Marshal.WriteByte(gString, textUTF8.Length, 0); // add \0
+            _eventMarshaled.Text = gString;
             Marshal.StructureToPtr(_eventMarshaled, _event, false);
 
-            _pinnedString = pinnedArray;
+            _gString = gString;
         }
 
         public void RenderAndBlend(int current, BitmapDataBuffer data)
