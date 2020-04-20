@@ -339,5 +339,7 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 
-# Ignore libvlc binary files
+# Ignore binary files
 Ruminoid.Trimmer.Shell/libvlc/**
+Ruminoid.Trimmer.Shell/ffmpeg/**
+Ruminoid.Trimmer.Shell/libass.dll
