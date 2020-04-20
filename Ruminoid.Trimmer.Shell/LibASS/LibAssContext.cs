@@ -55,6 +55,7 @@ Dialogue: 0,0:00:00.10,1:00:00.20,Default,,0,0,0,,LibASS Running";
         private IntPtr _event;
         private ASS_Event _eventMarshaled;
         private IntPtr _gString = IntPtr.Zero;
+        private IntPtr _origString = IntPtr.Zero;
 
         public LibASSContext()
         {
@@ -63,6 +64,7 @@ Dialogue: 0,0:00:00.10,1:00:00.20,Default,,0,0,0,,LibASS Running";
             var track = Marshal.PtrToStructure<ASS_Track>(_track);
             _event = track.events;
             _eventMarshaled = Marshal.PtrToStructure<ASS_Event>(_event);
+            _origString = _eventMarshaled.Text;
         }
 
         public void UpdateRenderSize(int width, int height)
@@ -166,7 +168,12 @@ Dialogue: 0,0:00:00.10,1:00:00.20,Default,,0,0,0,,LibASS Running";
 
         public void Dispose()
         {
+            _eventMarshaled.Text = _origString;
+            Marshal.StructureToPtr(_eventMarshaled, _event, false);
             ass_free_track(_track);
+
+            if (_gString != IntPtr.Zero)
+                Marshal.FreeHGlobal(_gString);
         }
     }
 }

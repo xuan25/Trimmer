@@ -68,9 +68,9 @@ namespace Ruminoid.Trimmer.Shell.LibASS
     public struct ASS_Event
     {
         /// int
-        public int Start;
+        public long Start;
         /// int
-        public int Duration;
+        public long Duration;
         /// int
         public int ReadOrder;
         /// int
